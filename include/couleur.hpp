@@ -1,6 +1,5 @@
 #pragma once
 
-
 enum couleur_e{
     JAUNE = 0,
     BLANC = 1,

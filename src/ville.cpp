@@ -1,4 +1,6 @@
-#include <ville.hpp>
+#include "ville.hpp"
+
+using namespace std;
 
 ville::ville(string nvNom)
 {

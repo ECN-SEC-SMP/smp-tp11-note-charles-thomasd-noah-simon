@@ -1,9 +1,9 @@
 #include "cartewagon.hpp"
 
-carteWagon::carteWagon(string couleur) : carte(), couleur(couleur){
-    couleur = couleur;
+carteWagon::carteWagon(couleur_e couleur) : carte(), couleur(couleur){
+    this->couleur = couleur;
 }
 
-string carteWagon::getCouleur(){
+couleur_e carteWagon::getCouleur(){
     return couleur;
 }

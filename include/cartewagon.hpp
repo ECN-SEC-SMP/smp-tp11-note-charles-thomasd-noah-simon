@@ -1,5 +1,6 @@
 #pragma once
 #include "carte.hpp"
+#include "couleur.hpp"
 #include <string>
 
 using namespace std;
@@ -7,9 +8,9 @@ using namespace std;
 class carteWagon : public carte
 {
 private:
-    string couleur;
+    couleur_e couleur;
 public:
-    carteWagon(string couleur);
-    string getCouleur();
+    carteWagon(couleur_e couleur);
+    couleur_e getCouleur();
     ~carteWagon();
 };
