@@ -33,7 +33,7 @@ FetchContent_Declare(
 )
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
-file(GLOB_RECURSE INCLUDES "include/*.hpp")
+file(GLOB_RECURSE INCLUDES "include/*.h")
 
 # Ne pas construire GoogleMock si on n'en a pas besoin.
 # Cela accélère la compilation et simplifie le projet.
@@ -67,7 +67,7 @@ add_executable(mytest.out
 target_compile_options(mytest.out PRIVATE -Wall -Wextra -pthread -g)
 
 target_include_directories(mytest.out PUBLIC
-    ${INCLUDES}
+    ${CMAKE_SOURCE_DIR}/include
 )
 
 # Liaison de l'exécutable avec GoogleTest.
