@@ -5,16 +5,16 @@
 
 using namespace std;
 
-class ticketVille : public carte
+class ticket : public carte
 {
 private:
     ville ville1;
     ville ville2;
-    bool estTermine;
+    bool isTermine;
 public:
-    ticketVille(ville ville1, ville ville2);
+    ticket(ville ville1, ville ville2);
     void getVille1();
     void getVille2();
-    void setEstTermine();
-    ~ticketVille();
+    void setisTermine();
+    ~ticket();
 };
