@@ -11,13 +11,7 @@ liaison::liaison(ville* nvVa,ville* nvVb,int nvNbRails,string nvCouleurRail)
     this->occupe = nullptr;
 }
 // accesseurs
-array<ville*> getVilles() const
-{
-    array<ville*> villes;
-    villes.push_back(this->va);
-    villes.push_back(this->vb);
-    return villes;
-}
+array<ville*> getVilles() const { return this->villes;}
 int getNbRails() const { return this->nbRails;}
 couleur_e getCouleur() const { return this->couleurRail;}
 joueur* liaison::getOccupant() const { return this->occupant;}
