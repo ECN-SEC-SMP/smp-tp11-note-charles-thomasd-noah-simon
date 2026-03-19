@@ -21,8 +21,8 @@ public:
     /**
      * @brief Construction d'un nouvel objet ticket
      * 
-     * @param ville1 
-     * @param ville2 
+     * @param ville1
+     * @param ville2
      */
     ticket(ville* ville1, ville* ville2);
 
