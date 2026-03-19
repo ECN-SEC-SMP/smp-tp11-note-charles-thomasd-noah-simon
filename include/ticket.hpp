@@ -1,6 +1,7 @@
 #pragma once
 #include "carte.hpp"
 #include "ville.hpp"
+#include <array>
 #include <string>
 
 using namespace std;
@@ -14,8 +15,7 @@ using namespace std;
 class ticket : public carte
 {
 private:
-    ville ville1;
-    ville ville2;
+    array<ville*,2> villes;
     bool isTermine;
 public:
     /**
@@ -24,19 +24,13 @@ public:
      * @param ville1 
      * @param ville2 
      */
-    ticket(ville ville1, ville ville2);
+    ticket(ville* ville1, ville* ville2);
 
     /**
-     * @brief Récupère la première ville du ticket
+     * @brief Récupère les villes du ticket
      * 
      */
-    void getVille1();
-
-    /**
-     * @brief Récupère la deuxième ville du ticket
-     * 
-     */
-    void getVille2();
+    array<ville*,2> getVilles();
 
     /**
      * @brief Passe l'attribut isTermine à true pour indiquer que le ticket est complété
