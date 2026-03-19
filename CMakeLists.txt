@@ -57,6 +57,7 @@ enable_testing()
 # Il sera construit à partir des fichiers suivants.
 add_executable(mytest.out
     ${SOURCES}
+    main.cpp
 )
 
 # Ajout d'options de compilation spécifiques à cette cible :

@@ -1,11 +1,17 @@
 #pragma once
 
+/**
+ * @brief Énumération des couleurs possibles pour :
+ * - les cases (rails) du plateau de jeu, ici les liaisons
+ * - les joueurs
+ * - les cartes wagon
+ */
 enum couleur_e{
-    JAUNE = 0,
-    BLANC = 1,
-    VERT  = 2,
-    NOIR  = 3,
-    BLEU  = 4,
-    RED   = 5
+    JAUNE,
+    BLANC,
+    VERT, 
+    NOIR, 
+    BLEU, 
+    RED
 };
 

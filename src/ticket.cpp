@@ -1,8 +1,11 @@
 #include "ticket.hpp"
 
-ticket::ticket(ville ville1, ville ville2) : carte(), ville1(ville1), ville2(ville2), isTermine(false){
-    this->ville1 = ville1;
-    this->ville2 = ville2;
+ticket::ticket(ville* ville1, ville* ville2) : carte(), isTermine(false){
+    this->villes = {ville1, ville2};
+}
+
+array<ville*,2> ticket::getVilles(){
+    return villes;
 }
 
 void ticket::setIsTermine(){
