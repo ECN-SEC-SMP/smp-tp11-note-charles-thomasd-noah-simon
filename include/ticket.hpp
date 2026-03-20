@@ -7,36 +7,36 @@
 using namespace std;
 
 /**
- * @brief La classe ticket représente une carte ticket dans le jeu.
- * Elle hérite de la classe carte et contient deux objets ville
+ * @brief La classe Ticket représente une Carte Ticket dans le jeu.
+ * Elle hérite de la classe Carte et contient deux objets ville
  * représentant les villes qui doivent être connectées, ainsi qu'un 
- * attribut booléen pour indiquer si le ticket est complété ou non. 
+ * attribut booléen pour indiquer si le Ticket est complété ou non. 
  */
-class ticket : public carte
+class Ticket : public Carte
 {
 private:
     array<ville*,2> villes;
     bool isTermine;
 public:
     /**
-     * @brief Construction d'un nouvel objet ticket
+     * @brief Construction d'un nouvel objet Ticket
      * 
      * @param ville1
      * @param ville2
      */
-    ticket(ville* ville1, ville* ville2);
+    Ticket(ville* ville1, ville* ville2);
 
     /**
-     * @brief Récupère les villes du ticket
+     * @brief Récupère les villes du Ticket
      * 
      */
     array<ville*,2> getVilles();
 
     /**
-     * @brief Passe l'attribut isTermine à true pour indiquer que le ticket est complété
+     * @brief Passe l'attribut isTermine à true pour indiquer que le Ticket est complété
      * 
      */
     void setIsTermine();
 
-    ~ticket();
+    ~Ticket();
 };

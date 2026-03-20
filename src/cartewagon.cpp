@@ -1,6 +1,6 @@
-#include "cartewagon.hpp"
+#include "Cartewagon.hpp"
 
-carteWagon::carteWagon(couleur_e couleur) : carte(), couleur(couleur){
+carteWagon::carteWagon(couleur_e couleur) : Carte(), couleur(couleur){
     this->couleur = couleur;
 }
 

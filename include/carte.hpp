@@ -1,2 +1,2 @@
-class carte
+class Carte
 {};
