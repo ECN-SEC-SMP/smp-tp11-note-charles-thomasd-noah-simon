@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ville::ville(string nvNom)
+Ville::Ville(string nvNom)
 {
     this->nom = nvNom;
 }

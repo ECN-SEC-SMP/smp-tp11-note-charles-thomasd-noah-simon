@@ -1,0 +1,38 @@
+#pragma once
+#include "ville.hpp"
+#include <string>
+#include <vector>
+#include <array>
+#include "couleur.hpp"
+#include "joueur.hpp"
+using namespace std;
+
+class Liaison
+{
+private:
+    array<Ville*,2> villes;
+    int nbRails;
+    couleur_e couleurRail;
+    Joueur* occupant;
+
+public:
+    // constructeurs
+    Liaison(Ville* nvVa,Ville* nvVb,int nvNbRails,string couleurRail);
+
+    // destructeurs
+    ~Liaison();
+
+    // accesseurs
+    array<Ville*,2> getVilles() const;
+    int getNbRails() const;
+    couleur_e getCouleur() const;
+    Joueur* getOccupant() const;
+
+    // mutateurs
+    void setOccupant(Joueur* nvOccupant);
+
+    // methodes
+    bool isOccupe();
+
+};
+
