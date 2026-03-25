@@ -3,4 +3,7 @@
 #include "gtest/gtest.h"
 
 
-TEST()
+TEST(setOccupant, TestArraySize)
+{
+    EXPECT_EQ(2,)
+}

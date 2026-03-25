@@ -10,7 +10,7 @@ using namespace std;
 class liaison
 {
 private:
-    array<ville*> villes;
+    array<ville*,2> villes;
     int nbRails;
     couleur_e couleurRail;
     joueur* occupant;

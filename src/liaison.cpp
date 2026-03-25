@@ -4,8 +4,7 @@
 // constructeurs
 liaison::liaison(ville* nvVa,ville* nvVb,int nvNbRails,string nvCouleurRail)
 {
-    this->villes[0] = nvVa;
-    this->villes[1] = nvVb;
+    this->villes = {nvVa,nvVb};
     this->nb_rails = nvNbRails;
     this->couleur_rail = nvCouleurRail;
     this->occupe = nullptr;
