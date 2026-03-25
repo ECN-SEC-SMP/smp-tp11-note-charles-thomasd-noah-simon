@@ -1,5 +1,4 @@
 #pragma once
-#include "carte.hpp"
 #include "couleur.hpp"
 #include <string>
 
@@ -11,7 +10,7 @@ using namespace std;
  * Elle est utilisée pour emprunter les rails entre les villes sur le plateau de jeu.
  * Elle hérite de la classe Carte, ce qui permet de la traiter de manière polymorphique avec d'autres types de Cartes dans le jeu. 
  */
-class carteWagon : public Carte
+class carteWagon
 {
 private:
     couleur_e couleur;

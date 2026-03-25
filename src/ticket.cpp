@@ -1,6 +1,6 @@
-#include "Ticket.hpp"
+#include "ticket.hpp"
 
-Ticket::Ticket(ville* ville1, ville* ville2) : Carte(), isTermine(false){
+Ticket::Ticket(ville* ville1, ville* ville2) : isTermine(false){
     this->villes = {ville1, ville2};
 }
 
