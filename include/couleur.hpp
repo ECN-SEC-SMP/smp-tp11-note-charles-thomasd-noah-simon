@@ -4,7 +4,7 @@
  * @brief Énumération des couleurs possibles pour :
  * - les cases (rails) du plateau de jeu, ici les liaisons
  * - les joueurs
- * - les cartes wagon
+ * - les Cartes wagon
  */
 enum couleur_e{
     JAUNE,
@@ -12,6 +12,7 @@ enum couleur_e{
     VERT, 
     NOIR, 
     BLEU, 
-    RED
+    RED,
+    MULTICOLORE
 };
 
