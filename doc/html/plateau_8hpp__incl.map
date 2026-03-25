@@ -1,0 +1,13 @@
+<map id="include/plateau.hpp" name="include/plateau.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="90,5,223,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,63,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,35,70,74,67,69,134,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="86,80,136,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,34,130,68,125,65,147,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="160,80,244,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,31,188,65,184,68,162,34"/>
+<area shape="rect" id="Node000005" href="$ville_8hpp.html" title=" " alt="" coords="267,80,337,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="183,30,264,70,262,75,181,35"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="275,155,329,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="305,107,305,139,299,139,299,107"/>
+</map>
