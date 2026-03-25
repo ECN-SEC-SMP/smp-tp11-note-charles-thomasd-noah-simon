@@ -17,7 +17,7 @@ using namespace std;
 class Plateau {
 private:
     // Attributs privés
-    vector<liaison> liaisons;
+    vector<Liaison> liaisons_;
     
 public:
     // Constructeur
@@ -39,7 +39,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool isLink(array<Ville*> villeIsLink, Joueur * j) const;
+    bool isLink(array<Ville*,2> villeIsLink, Joueur * j) const;
 
     /**
      * @brief 
@@ -49,7 +49,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool putWagon(liaison l, Joueur j) ;
+    bool putWagon(Liaison l, Joueur j) ;
     
 };
 

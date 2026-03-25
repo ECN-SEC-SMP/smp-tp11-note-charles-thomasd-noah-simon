@@ -7,26 +7,32 @@
 #include "joueur.hpp"
 using namespace std;
 
-class liaison
+class Liaison
 {
 private:
-    array<ville*,2> villes;
+    array<Ville*,2> villes;
     int nbRails;
     couleur_e couleurRail;
-    joueur* occupant;
+    Joueur* occupant;
+
 public:
     // constructeurs
-    liaison(ville* nvVa,ville* nvVb,int nvNbRails,string couleurRail);
+    Liaison(Ville* nvVa,Ville* nvVb,int nvNbRails,string couleurRail);
+
+    // destructeurs
+    ~Liaison();
+
     // accesseurs
-    array<ville*> getVilles() const;
+    array<Ville*,2> getVilles() const;
     int getNbRails() const;
     couleur_e getCouleur() const;
-    joueur* getOccupant() const;
+    Joueur* getOccupant() const;
+
     // mutateurs
-    void setOccupant(joueur* nvOccupant);
+    void setOccupant(Joueur* nvOccupant);
+
     // methodes
     bool isOccupe();
-    // destructeurs
-    ~liaison();
+
 };
 

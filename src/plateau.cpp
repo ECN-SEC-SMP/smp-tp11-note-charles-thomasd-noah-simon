@@ -9,17 +9,17 @@ Plateau::~Plateau(){
     
 }
 
-bool Plateau::getLiaisonOccupe(){
+bool Plateau::getLiaisonOccupe() const{
     
 }
 
-bool Plateau::isLink(array<Ville*> villeIsLink, Joueur * j)const{
+bool Plateau::isLink(array<Ville*,2> villeIsLink, Joueur * j)const{
     
 }
 
 
-bool Plateau::putWagon(liaison l,Joueur j){
-    if (l.isOccupe() != nullptr) return false;
+bool Plateau::putWagon(Liaison l,Joueur j){
+    if (l.isOccupe()) return false;
     else {
         l.setOccupant(j);
         return true;

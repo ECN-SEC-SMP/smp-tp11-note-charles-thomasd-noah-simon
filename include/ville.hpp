@@ -2,12 +2,12 @@
 #include <string>
 using namespace std;
 
-class ville
+class Ville
 {
 private:
     string nom;
 public:
-    ville(string nvNom);
-    ~ville();
+    Ville(string nvNom);
+    ~Ville();
 };
 

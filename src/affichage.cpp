@@ -5,33 +5,33 @@ Affichage::Affichage(){
 
 }
 
-Plateau::~Affichage(){
+Affichage::~Affichage(){
     
 }
 
-void Plateau::showPlateau(){
+void Affichage::showPlateau(Plateau p){
     
 }
 
-void Plateau::showMain(Joueur j){
+void Affichage::showMain(Joueur j){
     // for(n :j.getMain()){
     //     cout << n.  <<endl;
     // }
 }
 
-void Plateau::showTickets(Joueur j){
+void Affichage::showTickets(Joueur j){
     // for(n :j.getTickets()){
     //     cout << n.   <<endl;
     // }
 }
 
-void Plateau::showTicketGagnant(Joueur j){
+void Affichage::showTicketGagnant(Joueur j){
     // for(n :j.getTickets()){
     //     cout << n.   <<endl;
     // }
 }
 
-void Plateau::showWagonRestant(Joueur j){
+void Affichage::showWagonRestant(Joueur j){
     // for(n :j.getTickets()){
     //     cout << n.   <<endl;
     // }

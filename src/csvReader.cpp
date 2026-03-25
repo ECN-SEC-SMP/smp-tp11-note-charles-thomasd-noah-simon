@@ -23,12 +23,13 @@ struct Reader {
     }
 };
 
-int main() {
-    auto data = Reader()("map.csv");
+/*test pour le lecteur de csv*/
+// int main() {
+//     auto data = Reader()("map.csv");
 
-    // Affichage direct
-    for (auto row : data) {
-        for (auto word : row) cout << word << " ";
-        cout << endl;
-    }
-}
+//     // Affichage direct
+//     for (auto row : data) {
+//         for (auto word : row) cout << word << " ";
+//         cout << endl;
+//     }
+// }

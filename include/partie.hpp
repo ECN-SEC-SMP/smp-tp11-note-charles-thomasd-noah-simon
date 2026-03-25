@@ -3,9 +3,9 @@
 
 using namespace std;
 
-#include "plateau.h"
-#include "joueur.h"
-#include "pioche.h"
+#include "plateau.hpp"
+#include "joueur.hpp"
+#include "pioche.hpp"
 
 
 class partie

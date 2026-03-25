@@ -6,7 +6,7 @@
 
 //priver
 #include "plateau.hpp"
-#include "joueurs.hpp"
+#include "joueur.hpp"
 
 
 using namespace std;
@@ -15,7 +15,7 @@ using namespace std;
 class Affichage{
 private:
     // Attributs privés
-    vector<liaison> liaisons;
+    vector<Liaison> liaisons;
     
 public:
     // Constructeur

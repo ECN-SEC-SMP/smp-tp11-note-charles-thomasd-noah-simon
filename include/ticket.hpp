@@ -15,8 +15,9 @@ using namespace std;
 class ticket : public carte
 {
 private:
-    array<ville*,2> villes;
+    array<Ville*,2> villes;
     bool isTermine;
+    
 public:
     /**
      * @brief Construction d'un nouvel objet ticket
@@ -24,13 +25,13 @@ public:
      * @param ville1
      * @param ville2
      */
-    ticket(ville* ville1, ville* ville2);
+    ticket(Ville* ville1, Ville* ville2);
 
     /**
      * @brief Récupère les villes du ticket
      * 
      */
-    array<ville*,2> getVilles();
+    array<Ville*,2> getVilles();
 
     /**
      * @brief Passe l'attribut isTermine à true pour indiquer que le ticket est complété

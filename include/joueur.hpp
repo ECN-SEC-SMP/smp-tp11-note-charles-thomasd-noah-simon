@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#include "carte.h"
+#include "carte.hpp"
 
 class Joueur
 {

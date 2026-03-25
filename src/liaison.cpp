@@ -2,25 +2,41 @@
 #include "liaison.hpp"
 
 // constructeurs
-liaison::liaison(ville* nvVa,ville* nvVb,int nvNbRails,string nvCouleurRail)
+Liaison::Liaison(Ville* nvVa,Ville* nvVb,int nvNbRails,string nvCouleurRail)
 {
     this->villes = {nvVa,nvVb};
-    this->nb_rails = nvNbRails;
-    this->couleur_rail = nvCouleurRail;
-    this->occupe = nullptr;
+    this->nbRails = nvNbRails;
+    this->couleurRail = couleurRail;
+    this->occupant = nullptr;
 }
+
 // accesseurs
-array<ville*> getVilles() const { return this->villes;}
-int getNbRails() const { return this->nbRails;}
-couleur_e getCouleur() const { return this->couleurRail;}
-joueur* liaison::getOccupant() const { return this->occupant;}
+array<Ville*,2> Liaison::getVilles() const {
+     return this->villes;
+}
+
+int Liaison::getNbRails() const { 
+    return this->nbRails;
+}
+
+couleur_e Liaison::getCouleur() const {
+    return this->couleurRail;
+}
+
+Joueur* Liaison::getOccupant() const {
+    return this->occupant;
+}
+
 // mutateurs
-void setOccupant(joueur* nvOccupant) { this->occupant = nvOccupant;}
+void Liaison::setOccupant(Joueur* nvOccupant) {
+    this->occupant = nvOccupant;
+}
+
 // methodes
-bool liaison::isOccupe()
+bool Liaison::isOccupe()
 {
-    bool status = (liaison::getOccupant() == nullptr);
+    bool status = (Liaison::getOccupant() == nullptr);
     return status;
 }
 // destructeurs
-liaison::~liaison(){}
+Liaison::~Liaison(){}
