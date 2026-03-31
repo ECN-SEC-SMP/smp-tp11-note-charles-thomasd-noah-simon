@@ -5,15 +5,17 @@
 #include <array>
 #include "couleur.hpp"
 #include "joueur.hpp"
+
 using namespace std;
 
 class Liaison
 {
 private:
     array<Ville*,2> villes;
-    int nbRails;
     couleur_e couleurRail;
     Joueur* occupant;
+    int nbRails;
+
 
 public:
     // constructeurs

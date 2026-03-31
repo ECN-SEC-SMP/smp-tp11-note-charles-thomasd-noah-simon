@@ -17,7 +17,7 @@ using namespace std;
 class Plateau {
 private:
     // Attributs privés
-    vector<Liaison> liaisons_;
+    vector<Liaison> liaisons;
     
 public:
     // Constructeur

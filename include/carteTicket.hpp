@@ -1,5 +1,6 @@
 #pragma once
 #include "ville.hpp"
+#include "carte.hpp"
 #include <array>
 #include <string>
 
@@ -11,7 +12,7 @@ using namespace std;
  * représentant les villes qui doivent être connectées, ainsi qu'un 
  * attribut booléen pour indiquer si le Ticket est complété ou non. 
  */
-class Ticket
+class CarteTicket : public Carte
 {
 private:
     array<Ville*,2> villes;
@@ -24,7 +25,7 @@ public:
      * @param ville1
      * @param ville2
      */
-    Ticket(ville* ville1, ville* ville2);
+    CarteTicket(Ville* ville1, Ville* ville2);
 
     /**
      * @brief Récupère les villes du Ticket
@@ -38,5 +39,5 @@ public:
      */
     void setIsTermine();
 
-    ~Ticket();
+    ~CarteTicket();
 };

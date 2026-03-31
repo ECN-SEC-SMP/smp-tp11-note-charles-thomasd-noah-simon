@@ -1,15 +1,17 @@
-#include "ticket.hpp"
+#include "carteTicket.hpp"
 
-Ticket::Ticket(ville* ville1, ville* ville2) : isTermine(false){
+CarteTicket::CarteTicket(Ville* ville1, Ville* ville2) : isTermine(false){
     this->villes = {ville1, ville2};
 }
 
-array<ville*,2> Ticket::getVilles(){
+CarteTicket::~CarteTicket(){}
+
+
+array<Ville*,2> CarteTicket::getVilles(){
     return villes;
 }
 
-void Ticket::setIsTermine(){
+void CarteTicket::setIsTermine(){
     isTermine = true;
 }
 
-Ticket::~Ticket(){}

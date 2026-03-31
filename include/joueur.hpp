@@ -1,19 +1,22 @@
+#pragma once
 #include <stdlib.h>
 #include <vector>
 #include<string>
 
 using namespace std;
 
-#include "carte.hpp"
+#include "carteWagon.hpp"
+#include "carteTicket.hpp"
+
 
 class Joueur
 {
 private:
     vector<CarteWagon> main;
-    vector<Ticket> tickets;
+    vector<CarteTicket> tickets;
     int ticketGagnes;
-    string couleur;
     int wagonRestants;
+    string couleur;
 
 public:
     Joueur();

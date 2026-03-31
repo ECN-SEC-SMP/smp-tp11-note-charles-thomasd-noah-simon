@@ -1,11 +1,11 @@
-#include "cartewagon.hpp"
+#include "carteWagon.hpp"
 
-carteWagon::carteWagon(couleur_e couleur) : couleur(couleur){
+CarteWagon::CarteWagon(couleur_e couleur) : couleur(couleur){
     this->couleur = couleur;
 }
 
-couleur_e carteWagon::getCouleur(){
+couleur_e CarteWagon::getCouleur(){
     return couleur;
 }
 
-carteWagon::~carteWagon(){}
+CarteWagon::~CarteWagon(){}

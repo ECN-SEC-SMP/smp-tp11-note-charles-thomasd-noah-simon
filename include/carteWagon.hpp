@@ -1,5 +1,6 @@
 #pragma once
 #include "couleur.hpp"
+#include "carte.hpp"
 #include <string>
 
 using namespace std;
@@ -10,17 +11,19 @@ using namespace std;
  * Elle est utilisée pour emprunter les rails entre les villes sur le plateau de jeu.
  * Elle hérite de la classe Carte, ce qui permet de la traiter de manière polymorphique avec d'autres types de Cartes dans le jeu. 
  */
-class carteWagon
+class CarteWagon : public Carte
 {
 private:
     couleur_e couleur;
 public:
+
+
     /**
      * @brief Construit une nouvelle Carte wagon avec une couleur spécifique
      * 
      * @param couleur 
      */
-    carteWagon(couleur_e couleur);
+    CarteWagon(couleur_e couleur);
 
     /**
      * @brief Renvoie la couleur de la Carte wagon
@@ -29,5 +32,5 @@ public:
      */
     couleur_e getCouleur();
 
-    ~carteWagon();
+    ~CarteWagon();
 };

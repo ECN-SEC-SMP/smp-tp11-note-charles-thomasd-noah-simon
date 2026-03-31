@@ -6,6 +6,8 @@ using namespace std;
 #include "plateau.hpp"
 #include "joueur.hpp"
 #include "pioche.hpp"
+#include "piocheTicket.hpp"
+#include "piocheWagon.hpp"
 
 
 class partie
@@ -13,8 +15,8 @@ class partie
 private:
     Plateau plat;
     vector<Joueur> joueurs;
-    Pioche piocheTicket;
-    Pioche piocheWagon;
+    PiocheTicket piocheTicket;
+    PiocheWagon piocheWagon;
 public:
     partie(string fichier);
     

@@ -5,5 +5,5 @@
 
 TEST(setOccupant, TestArraySize)
 {
-    EXPECT_EQ(2,)
+    
 }
