@@ -8,6 +8,7 @@ using namespace std;
 #include "pioche.hpp"
 #include "piocheTicket.hpp"
 #include "piocheWagon.hpp"
+#include "csvReader.hpp"
 
 
 class partie
@@ -18,7 +19,7 @@ private:
     PiocheTicket piocheTicket;
     PiocheWagon piocheWagon;
 public:
-    partie(string fichier);
+    partie(string mapCVS, string ticketCSV);
     
     ~partie();
 };

@@ -14,7 +14,7 @@ public:
      * @brief Constructeur de la classe Pioche ticket
      * 
      */
-    PiocheTicket();
+    PiocheTicket(vector<vector<string>>);
 
     ~PiocheTicket();
 

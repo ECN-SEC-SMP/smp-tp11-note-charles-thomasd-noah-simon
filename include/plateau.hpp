@@ -4,7 +4,8 @@
 //public
 #include <vector>
 #include <array>
-
+#include <string>
+#include <stdlib.h>
 //priver
 #include "liaison.hpp"
 #include "ville.hpp"
@@ -21,7 +22,7 @@ private:
     
 public:
     // Constructeur
-    Plateau();
+    Plateau(vector<vector<string>>);
     
     // Destructeur
     ~Plateau();
