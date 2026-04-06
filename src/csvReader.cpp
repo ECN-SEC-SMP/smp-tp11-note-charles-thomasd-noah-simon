@@ -1,35 +1,50 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <string>
+#include "liaison.hpp"
+#include "ville.hpp"
+#include "csvReader.hpp"
 
 using namespace std;
 
-// ca marche mais c est l'ia ... :/
 
-struct Reader {
-    vector<vector<string>> operator()(string path) {
-        vector<vector<string>> res;
-        ifstream f(path);
-        string line, w;
-        while (getline(f, line)) {
-            istringstream iss(line);
-            vector<string> row;
-            while (iss >> w) row.push_back(w);
-            res.push_back(row);
-        }
-        return res;
+vector<Liaison> Reader::operator()(string path) {
+    vector<Liaison> csvParser;
+    string line, csvWordData;
+
+    ifstream file(path); //Ouvre le fichier
+
+    //Vérification si le fichier est ouvert
+    if (!file) { 
+        cerr << "Erreur: Impossible d'ouvrir le fichier " << path << endl;
+        return csvParser;
     }
-};
 
-/*test pour le lecteur de csv*/
-// int main() {
-//     auto data = Reader()("map.csv");
+    getline(file, line); // passe la première ligne
+    while (getline(file, line)) {
+        istringstream iss(line); // Séparation en ligne
+        //tableau contenant city_a[0],city_b[1],color[2],lenght[3]
+        array<string,4> liaisonCar;
 
-//     // Affichage direct
-//     for (auto row : data) {
-//         for (auto word : row) cout << word << " ";
-//         cout << endl;
-//     }
-// }
+        unsigned short cpt = 0;
+        while (getline(iss, csvWordData, ',') && cpt < 4){  // séparateur virgule 
+            liaisonCar[cpt] = csvWordData;
+            cpt++;
+        }
+
+        //Conversion
+        Ville * vA = new Ville(liaisonCar[0]);
+        Ville * vB = new Ville(liaisonCar[1]);
+        couleur_e colorLiaison = colorConverteur(liaisonCar[2]);
+        unsigned int lenghtLiaison = stoi(liaisonCar[3]);
+
+        //Création de la liaison
+        Liaison liaison(vA, vB, colorLiaison, lenghtLiaison);
+        csvParser.push_back(liaison); // liaison ajoute dans le vecteur
+    }
+    return csvParser;
+}
+
+
+
+
