@@ -22,10 +22,9 @@ public:
     /**
      * @brief Construction d'un nouvel objet Ticket
      * 
-     * @param ville1
-     * @param ville2
+     * @param 
      */
-    CarteTicket(Ville* ville1, Ville* ville2);
+    CarteTicket();
 
     /**
      * @brief Récupère les villes du Ticket

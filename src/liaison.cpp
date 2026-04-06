@@ -1,7 +1,7 @@
 #include "liaison.hpp"
 
 // constructeurs
-Liaison::Liaison(Ville* nvVa,Ville* nvVb,int nvNbRails,string nvCouleurRail)
+Liaison::Liaison(Ville* nvVa,Ville* nvVb, couleur_e couleurRail, unsigned int nvNbRails)
 {
     this->villes = {nvVa,nvVb};
     this->nbRails = nvNbRails;
@@ -37,5 +37,10 @@ bool Liaison::isOccupe()
     bool status = (Liaison::getOccupant() == nullptr);
     return status;
 }
+
 // destructeurs
-Liaison::~Liaison(){}
+Liaison::~Liaison(){
+    for (unsigned int i = 0; i < villes.size(); i++){
+        delete villes[i];
+    }
+}
