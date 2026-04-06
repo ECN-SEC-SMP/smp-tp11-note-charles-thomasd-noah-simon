@@ -19,7 +19,7 @@ private:
 
 public:
     // constructeurs
-    Liaison(Ville* nvVa,Ville* nvVb,int nvNbRails,string couleurRail);
+    Liaison(Ville* nvVa,Ville* nvVb, couleur_e couleurRail, unsigned int nvNbRails);
 
     // destructeurs
     ~Liaison();
