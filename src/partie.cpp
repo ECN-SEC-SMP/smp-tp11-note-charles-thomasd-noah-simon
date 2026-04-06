@@ -12,14 +12,14 @@ using namespace std;
 partie::partie(string mapCVS, string ticketCSV){ 
 
     Reader reader;
-    auto mapData = reader(mapCVS);
+    auto mapData = reader.readLiaisons(mapCVS);
     // Charger le plateau à partir du fichier CSV
     plat = Plateau(mapData);
 
     // Charger les tickets à partir du fichier CSV
-    auto ticketData = reader(ticketCSV);
-    piocheTicket = PiocheTicket(ticketData);
+    auto ticketData = reader.readTickets(ticketCSV);
 
+    piocheTicket = PiocheTicket(ticketData);
     // Initialiser la pioche de wagons (par exemple, avec 110 cartes)
     piocheWagon = PiocheWagon();
 

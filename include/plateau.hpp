@@ -6,9 +6,13 @@
 #include <array>
 #include <string>
 #include <stdlib.h>
+#include <array>
+#include <queue>
+#include <algorithm>
 //priver
 #include "liaison.hpp"
 #include "ville.hpp"
+
 
 
 
@@ -22,13 +26,13 @@ private:
     
 public:
     // Constructeur
-    Plateau(vector<vector<string>>);
+    Plateau(vector<Liaison> data);
     
     // Destructeur
     ~Plateau();
 
     // Méthodes publiques
-    bool getLiaisonOccupe() const;
+    bool getLiaisonOccupe(Liaison l) const;
 
 
     /**
