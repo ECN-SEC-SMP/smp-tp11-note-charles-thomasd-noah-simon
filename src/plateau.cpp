@@ -1,7 +1,7 @@
 #include "plateau.hpp"
 
 
-Plateau::Plateau(){
+Plateau::Plateau(vector<vector<string>>){
 
 }
 
