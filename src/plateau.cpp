@@ -10,7 +10,6 @@ Plateau::~Plateau(){
 
 bool Plateau::getLiaisonOccupe(Liaison l) const{
     return l.isOccupe();
-    
 }
 
 liaisons * Plateau::getLiaisons() const{

@@ -8,14 +8,13 @@
 #include "plateau.hpp"
 #include "joueur.hpp"
 
-
-using namespace std;
-
-
 class Affichage{
 private:
     // Attributs privés
     vector<Liaison> liaisons;
+
+    //méthodes privés
+    void showCote(cote_e cote);
     
 public:
     // Constructeur
@@ -30,7 +29,7 @@ public:
      * 
      * @param p 
      */
-    void showPlateau(Plateau p);
+    void showPlateau(Plateau &p);
 
     /**
      * @brief Affiche la main du joueur

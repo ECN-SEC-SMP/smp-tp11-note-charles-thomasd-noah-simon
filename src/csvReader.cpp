@@ -25,20 +25,20 @@ vector<Liaison> Reader::readMaps(string path) {
     getline(file, line); // passe la première ligne
     while (getline(file, line)) {
         istringstream iss(line); // Séparation en ligne
-        //tableau contenant city_a[0],city_b[1],color[2],lenght[3]
-        array<string,4> liaisonCar;
+        //tableau contenant city_a[0],city_b[1],region_a[2],region_b[3],color[4],lenght[5]
+        array<string,6> liaisonCar;
 
         unsigned short cpt = 0;
-        while (getline(iss, csvWordData, ',') && cpt < 4){  // séparateur virgule 
+        while (getline(iss, csvWordData, ',') && cpt < 6){  // séparateur virgule 
             liaisonCar[cpt] = csvWordData;
             cpt++;
         }
 
         //Conversion
-        Ville * vA = new Ville(liaisonCar[0]);
-        Ville * vB = new Ville(liaisonCar[1]);
-        couleur_e colorLiaison = colorConverteur(liaisonCar[2]);
-        unsigned int lenghtLiaison = stoi(liaisonCar[3]);
+        Ville * vA = new Ville(liaisonCar[0],convertRegion(liaisonCar[2]));
+        Ville * vB = new Ville(liaisonCar[1],convertRegion(liaisonCar[3]));
+        couleur_e colorLiaison = colorConverteur(liaisonCar[4]);
+        unsigned int lenghtLiaison = stoi(liaisonCar[5]);
 
         //Création de la liaison
         Liaison liaison(vA, vB, colorLiaison, lenghtLiaison);
