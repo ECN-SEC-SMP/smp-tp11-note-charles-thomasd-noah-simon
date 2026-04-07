@@ -1,3 +1,4 @@
+#pragma once
 #include "carteTicket.hpp"
 #include "pioche.hpp"
 #include <vector>
@@ -10,11 +11,16 @@ private:
 
 
 public:
+
+    PiocheTicket();
+
+
+
     /**
      * @brief Constructeur de la classe Pioche ticket
      * 
      */
-    PiocheTicket();
+    PiocheTicket(vector<CarteTicket> vecteurTickets);
 
     ~PiocheTicket();
 

@@ -12,6 +12,9 @@ Pioche::Pioche() {
 }
 
 
+Pioche::~Pioche() {
+}
+
 
 
 

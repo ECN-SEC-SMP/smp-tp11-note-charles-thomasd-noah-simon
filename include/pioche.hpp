@@ -1,3 +1,4 @@
+#pragma once
 #include "carte.hpp"
 #include <memory>
 #include <vector>
@@ -12,6 +13,6 @@ public:
     Pioche();
     ~Pioche();
     virtual bool estVide() const = 0;
-    virtual unique_ptr<Carte> piocher();
+    virtual unique_ptr<Carte> piocher() = 0;
 };
 

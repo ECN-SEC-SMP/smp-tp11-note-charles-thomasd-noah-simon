@@ -1,3 +1,4 @@
+#pragma once
 #include "carteWagon.hpp"
 #include "pioche.hpp"
 #include <vector>
