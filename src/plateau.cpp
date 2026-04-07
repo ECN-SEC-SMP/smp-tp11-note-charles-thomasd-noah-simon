@@ -1,7 +1,7 @@
 #include "plateau.hpp"
 
 
-Plateau::Plateau(vector<Liaison> data) : liaisons(data){
+Plateau::Plateau(vector<Liaison> data) : liaisons_(data){
 }
 
 Plateau::~Plateau(){
@@ -12,8 +12,8 @@ bool Plateau::getLiaisonOccupe(Liaison l) const{
     return l.isOccupe();
 }
 
-liaisons * Plateau::getLiaisons() const{
-    return &liaisons;
+const vector<Liaison> & Plateau::getLiaisons() const{
+    return liaisons_;
 }
 
 
@@ -38,7 +38,7 @@ bool Plateau::isLink(array<Ville*,2> villeIsLink, Joueur * j)const{
         aVisiter.pop();
 
         // Parcours de toutes les liaisons du plateau
-        for(const Liaison& liaison : liaisons)
+        for(const Liaison& liaison : liaisons_)
         {
           
             // On ne garde que les liaisons occupées par le joueur

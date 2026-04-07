@@ -32,7 +32,7 @@ void Liaison::setOccupant(Joueur* nvOccupant) {
 }
 
 // methodes
-bool Liaison::isOccupe()
+bool Liaison::isOccupe() const
 {
     bool status = (Liaison::getOccupant() == nullptr);
     return status;
@@ -40,7 +40,7 @@ bool Liaison::isOccupe()
 
 // destructeurs
 Liaison::~Liaison(){
-    for (unsigned int i = 0; i < villes.size(); i++){
-        delete villes[i];
-    }
+    // for (unsigned int i = 0; i < villes.size(); i++){
+    //     delete villes[i];
+    // }
 }

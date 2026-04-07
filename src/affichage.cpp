@@ -1,5 +1,6 @@
+#include <iostream>
 #include "affichage.hpp"
-#include couleur.hpp""
+#include "couleur.hpp"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ Affichage::~Affichage(){
     
 }
 
-Affichage::showCote(region_e cote){
+void Affichage::showRegion(region_e cote){
     switch (cote){
         case region_e::OUEST:
             cout << couleurTerminal_n::GRIS << "-- CÔTE OUEST --";
@@ -30,8 +31,9 @@ Affichage::showCote(region_e cote){
         break;
 
         default:
+        break;
     }
-    cout << string(48, '-') << RESET << "\n";
+    cout << string(48, '-') << couleurTerminal_n::RESET << "\n";
 }
 
 void Affichage::showPlateau(Plateau &p){
@@ -41,24 +43,53 @@ void Affichage::showPlateau(Plateau &p){
          << "╚══════════════════════════════════════════════════════════════╝\n"
          << couleurTerminal_n::RESET;
     //copie par adresse du vecteur liaisons
-    auto liaisons = p->getLiaisons();
+    auto liaisons = p.getLiaisons();
 
-    showCote(region_e::OUEST);
+    showRegion(region_e::OUEST);
+    for (unsigned int i = 0; i < liaisons.size() - 1; ++i) {
+        const auto& n = liaisons[i];
+        const auto& nextN = liaisons[i + 1]; 
 
-    for(n:liaisons){
-        //Ville 1 :
-        cout << couleurTerminal_n::BLANC << couleurTerminal_n::GRAS
+        //On sauvegarde une fois pour pas appeler plusierus fois
+        const unsigned int nbRails = n.getNbRails();
+        const array<Ville*,2> villesTab = n.getVilles();
+        const array<Ville*,2> nextVillesTab = (nextN).getVilles();;
+
+        if (!isEquivalentLiaison(villesTab,nextVillesTab))
+        {
+            cout << couleurTerminal_n::BLANC << couleurTerminal_n::GRAS
+            //Ville 1 :
              << n.getVilles()[0] << "     "  
              //liaisons :
-             << couleurTerminal_n::RESET << couleurTerminal_n::convertCouleur(n.getCouleur()) 
-             << string(n.getNbRails()/2, '=') << getNbRails() << string(n.getNbRails()/2, '=')
+             << couleurTerminal_n::RESET << convertCouleur(n.getCouleur()) 
+             << string(nbRails/2, '=') << nbRails << string(nbRails/2, '=')
              //Ville 2 :
              << couleurTerminal_n::RESET << couleurTerminal_n::BLANC << couleurTerminal_n::GRAS
              << n.getVilles()[1] 
              //status :
-             << n.isOccupe(); << endl;
-    }
+             << n.isOccupe() << endl;
+        }else {
+            const unsigned int nextNnbRails = nextN.getNbRails();
 
+            cout << couleurTerminal_n::BLANC << couleurTerminal_n::GRAS
+            //Ville 1 :
+             << n.getVilles()[0] << "     "  
+             //liaisons 1 :
+             << couleurTerminal_n::RESET << convertCouleur(n.getCouleur()) 
+             << string(nbRails/2, '=') << nbRails << string(nbRails/2, '=')
+             
+             << couleurTerminal_n::RESET << couleurTerminal_n::GRIS << " / "
+             //Liaison 2 :
+             << couleurTerminal_n::RESET << convertCouleur(nextN.getCouleur()) 
+             << string(nextNnbRails/2, '=') << nextNnbRails << string(nextNnbRails/2, '=')
+             //Ville 2 :
+             << couleurTerminal_n::RESET << couleurTerminal_n::BLANC << couleurTerminal_n::GRAS
+             << n.getVilles()[1] 
+             //status :
+             << n.isOccupe() << endl;
+             i++;
+        }
+    }
 }
 
 void Affichage::showMain(Joueur j){

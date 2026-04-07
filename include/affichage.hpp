@@ -14,7 +14,7 @@ private:
     vector<Liaison> liaisons;
 
     //méthodes privés
-    void showCote(cote_e cote);
+    void showRegion(region_e cote);
     
 public:
     // Constructeur

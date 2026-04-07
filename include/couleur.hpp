@@ -30,7 +30,7 @@ inline couleur_e colorConverteur(std::string c){
     if (c == "black")  return couleur_e::NOIR;
     if (c == "blue")   return couleur_e::BLEU;
     if (c == "red")    return couleur_e::ROUGE;
-    return COULEUR_INCONNUE;
+    return couleur_e::COULEUR_INCONNUE;
 }
 
 namespace couleurTerminal_n{
@@ -47,10 +47,13 @@ namespace couleurTerminal_n{
     const std::string NOIR    = "\033[90m";   
     const std::string BLEU    = "\033[34m";
     const std::string ROUGE   = "\033[31m";
+
+    //couleur suplémentaire pour l'affichage
+    const std::string GRIS   = "\033[90m";
 }
 
 
-inline const couleurTerminal_n convertCouleur(couleur_e c){
+inline const std::string  convertCouleur(couleur_e c){
     if (c == couleur_e::JAUNE) return couleurTerminal_n::JAUNE;
     if (c == couleur_e::BLANC) return couleurTerminal_n::BLANC;
     if (c == couleur_e::VERT) return couleurTerminal_n::VERT;

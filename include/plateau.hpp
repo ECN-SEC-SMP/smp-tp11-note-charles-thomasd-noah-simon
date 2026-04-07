@@ -35,7 +35,8 @@ public:
 
     //Accesseur :
     bool getLiaisonOccupe(Liaison l) const;
-    liaisons * getLiaisons() const;
+    const vector<Liaison> & getLiaisons() const;
+
 
 
     // Méthodes : 

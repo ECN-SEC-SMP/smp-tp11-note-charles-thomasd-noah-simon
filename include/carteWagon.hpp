@@ -3,8 +3,6 @@
 #include "carte.hpp"
 #include <string>
 
-using namespace std;
-
 /**
  * @brief Représente une Carte wagon dans le jeu
  * Une Carte wagon a une couleur spécifique qui est définie par l'énumération couleur_e.

@@ -5,8 +5,6 @@
 #include <string>
 
 
-using namespace std;
-
 /**
  * @brief La classe Ticket représente une Carte Ticket dans le jeu.
  * Elle hérite de la classe Carte et contient deux objets ville
@@ -17,7 +15,7 @@ class CarteTicket : public Carte
 {
 private:
     static constexpr unsigned int nbVilles_ = 2;
-    array<Ville*,nbVilles_> villes_;
+    std::array<Ville*,nbVilles_> villes_;
     bool valider_;
     
 public:
@@ -28,13 +26,13 @@ public:
      */
     CarteTicket();
     CarteTicket(Ville * vA, Ville * vB);
-    CarteTicket(array<Ville*,nbVilles_> v);
+    CarteTicket(std::array<Ville*,nbVilles_> v);
 
     /**
      * @brief Récupère les villes du Ticket
      * 
      */
-    array<Ville*,nbVilles_> getVilles();
+    std::array<Ville*,nbVilles_> getVilles();
 
     /**
      * @brief Passe l'attribut isTermine à true pour indiquer que le Ticket est complété

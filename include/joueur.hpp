@@ -3,8 +3,6 @@
 #include <vector>
 #include<string>
 
-using namespace std;
-
 #include "carteWagon.hpp"
 #include "carteTicket.hpp"
 
@@ -12,11 +10,11 @@ using namespace std;
 class Joueur
 {
 private:
-    vector<CarteWagon> main;
-    vector<CarteTicket> tickets;
+    std::vector<CarteWagon> main;
+    std::vector<CarteTicket> tickets;
     int ticketGagnes;
     int wagonRestants;
-    string couleur;
+    std::string couleur;
 
 public:
     Joueur();

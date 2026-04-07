@@ -34,7 +34,7 @@ public:
     void setOccupant(Joueur* nvOccupant);
 
     // methodes
-    bool isOccupe();
+    bool isOccupe() const;
 
 };
 
