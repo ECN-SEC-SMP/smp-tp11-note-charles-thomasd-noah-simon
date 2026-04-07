@@ -1,9 +1,7 @@
 #include "plateau.hpp"
 
 
-Plateau::Plateau(vector<Liaison> data){
-    this->liaisons = data;
-
+Plateau::Plateau(vector<Liaison> data) : liaisons(data){
 }
 
 Plateau::~Plateau(){
@@ -14,8 +12,13 @@ bool Plateau::getLiaisonOccupe(Liaison l) const{
     return l.isOccupe();
     
 }
-//code à vérifier mais c'est chatgpt donc pas de raison
 
+liaisons * Plateau::getLiaisons() const{
+    return &liaisons;
+}
+
+
+//code à vérifier mais c'est chatgpt donc pas de raison
 bool Plateau::isLink(array<Ville*,2> villeIsLink, Joueur * j)const{
     if (j == nullptr || villeIsLink[0] == nullptr || villeIsLink[1] == nullptr)
         return false;

@@ -10,7 +10,7 @@
 using namespace std;
 
 
-vector<Liaison> Reader::readLiaisons(string path) {
+vector<Liaison> Reader::readMaps(string path) {
     vector<Liaison> csvParser;
     string line, csvWordData;
 

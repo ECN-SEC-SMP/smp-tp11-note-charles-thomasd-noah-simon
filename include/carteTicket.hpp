@@ -4,6 +4,7 @@
 #include <array>
 #include <string>
 
+
 using namespace std;
 
 /**
@@ -15,8 +16,9 @@ using namespace std;
 class CarteTicket : public Carte
 {
 private:
-    array<Ville*,2> villes;
-    bool isTermine;
+    static constexpr unsigned int nbVilles_ = 2;
+    array<Ville*,nbVilles_> villes_;
+    bool valider_;
     
 public:
     /**
@@ -25,18 +27,20 @@ public:
      * @param 
      */
     CarteTicket();
+    CarteTicket(Ville * vA, Ville * vB);
+    CarteTicket(array<Ville*,nbVilles_> v);
 
     /**
      * @brief Récupère les villes du Ticket
      * 
      */
-    array<Ville*,2> getVilles();
+    array<Ville*,nbVilles_> getVilles();
 
     /**
      * @brief Passe l'attribut isTermine à true pour indiquer que le Ticket est complété
      * 
      */
-    void setIsTermine();
+    void setValider();
 
     ~CarteTicket();
 };

@@ -22,18 +22,24 @@ using namespace std;
 class Plateau {
 private:
     // Attributs privés
-    vector<Liaison> liaisons;
+    vector<Liaison> liaisons_;
     
 public:
+    // Constructeur par défault
+    Plateau();
     // Constructeur
     Plateau(vector<Liaison> data);
     
-    // Destructeur
+    // Destructeur :
     ~Plateau();
 
-    // Méthodes publiques
+    //Accesseur :
     bool getLiaisonOccupe(Liaison l) const;
+    liaisons * getLiaisons() const;
 
+
+    // Méthodes : 
+    
 
     /**
      * @brief Ville relier par un joueur spécifique

@@ -8,7 +8,7 @@
 
 struct Reader {
     // On ne garde que la signature
-    std::vector<Liaison> readLiaisons(std::string path);
+    std::vector<Liaison> readMaps(std::string path);
     PiocheTicket readTickets(std::string path);
 };
 
