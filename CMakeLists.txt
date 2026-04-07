@@ -33,7 +33,7 @@ FetchContent_Declare(
 )
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
-file(GLOB_RECURSE INCLUDES "include/*.h")
+file(GLOB_RECURSE INCLUDES "include/*.hpp")
 
 # Ne pas construire GoogleMock si on n'en a pas besoin.
 # Cela accélère la compilation et simplifie le projet.

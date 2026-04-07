@@ -7,4 +7,9 @@ Ville::Ville(string nvNom)
     this->nom = nvNom;
 }
 
+Ville::~Ville()
+{
+
+}
+
 

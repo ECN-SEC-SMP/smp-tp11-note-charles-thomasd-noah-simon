@@ -6,12 +6,15 @@
 
 using namespace std;
 
-
-
-PiocheTicket::PiocheTicket() {
-    // Initialisation de la pioche avec des tickets
-
+PiocheTicket::PiocheTicket(){
 }
+
+
+PiocheTicket::PiocheTicket(vector<CarteTicket> vecteurTickets) 
+: pioche_(vecteurTickets){
+    // Initialisation de la pioche avec des tickets
+}
+
 
 PiocheTicket::~PiocheTicket() {
 

@@ -23,7 +23,7 @@ enum couleur_e{
  * @param c 
  * @return couleur_e 
  */
-couleur_e colorConverteur(std::string c){
+inline couleur_e colorConverteur(std::string c){
     if (c == "yellow") return JAUNE;
     if (c == "white")  return BLANC;
     if (c == "green")  return VERT;
@@ -50,7 +50,7 @@ namespace couleurTerminal_n{
 }
 
 
-const std::string convertCouleur(couleur_e c){
+inline const std::string convertCouleur(couleur_e c){
     if (c == JAUNE) return couleurTerminal_n::JAUNE;
     if (c == BLANC) return couleurTerminal_n::BLANC;
     if (c == VERT) return couleurTerminal_n::VERT;
