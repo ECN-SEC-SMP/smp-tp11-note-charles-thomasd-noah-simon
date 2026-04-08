@@ -3,6 +3,3 @@
 Carte::Carte() {
 
 }
-Carte::~Carte() {
-
-}

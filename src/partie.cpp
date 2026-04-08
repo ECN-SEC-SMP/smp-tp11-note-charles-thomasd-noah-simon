@@ -10,7 +10,7 @@
 
 Partie::Partie(string mapCVS, string ticketCSV){ 
 
-    Reader reader;
+    /*Reader reader;
     auto mapData = reader.readMaps(mapCVS);
     // Charger le plateau à partir du fichier CSV
     plat = Plateau(mapData);
@@ -30,7 +30,7 @@ Partie::Partie(string mapCVS, string ticketCSV){
         joueurs.emplace_back("Joueur " + to_string(i + 1)); // Crée des joueurs avec des noms génériques
     }
     
-    cout << "Partie initialisée avec " << numPlayers << " joueurs." << endl;
+    cout << "Partie initialisée avec " << numPlayers << " joueurs." << endl;*/
 
 }
 

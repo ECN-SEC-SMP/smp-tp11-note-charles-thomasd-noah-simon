@@ -18,7 +18,7 @@ void PiocheWagon::genWagons() {
         }
     }
     for (int i = 0; i < 12; ++i) {
-        pioche_.push_back(CarteWagon(MULTICOLORE)); // Ajout des locomotives
+        pioche_.push_back(CarteWagon(couleur_e::MULTICOLORE)); // Ajout des locomotives
     }
     // Mélange des cartes wagon
     shuffle(pioche_.begin(), pioche_.end(), rng);

@@ -13,29 +13,23 @@
 #include "liaison.hpp"
 #include "ville.hpp"
 
-
-
-
-using namespace std;
-
-
 class Plateau {
 private:
     // Attributs privés
-    vector<Liaison> liaisons_;
+    std::vector<Liaison> liaisons_;
     
 public:
     // Constructeur par défault
     Plateau();
     // Constructeur
-    Plateau(vector<Liaison> data);
+    Plateau(std::vector<Liaison> data);
     
     // Destructeur :
     ~Plateau();
 
     //Accesseur :
     bool getLiaisonOccupe(Liaison l) const;
-    const vector<Liaison> & getLiaisons() const;
+    const std::vector<Liaison> & getLiaisons() const;
 
 
 

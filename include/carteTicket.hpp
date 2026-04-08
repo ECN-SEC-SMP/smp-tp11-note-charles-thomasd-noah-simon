@@ -35,7 +35,7 @@ public:
     std::array<Ville*,nbVilles_> getVilles();
 
     /**
-     * @brief Passe l'attribut isTermine à true pour indiquer que le Ticket est complété
+     * @brief Passe l'attribut valider_ à true pour indiquer que le Ticket est complété
      * 
      */
     void setValider();

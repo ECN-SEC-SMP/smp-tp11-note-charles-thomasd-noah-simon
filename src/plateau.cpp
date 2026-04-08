@@ -1,5 +1,8 @@
 #include "plateau.hpp"
 
+Plateau::Plateau(){
+    
+}
 
 Plateau::Plateau(vector<Liaison> data) : liaisons_(data){
 }
