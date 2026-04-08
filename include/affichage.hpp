@@ -14,9 +14,15 @@ private:
     vector<Liaison> liaisons;
 
     //méthodes privés
-    void showRegion(region_e cote);
     
-public:
+    void region(region_e cote);
+    void statusLiaison(const Liaison &l);
+    void statusLiaison(const Liaison &l1, const Liaison &l2);
+    void liaison(const Liaison &l1);
+    void liaison(const Liaison &l1, const Liaison &l2);
+    void ville(const Ville *v);
+
+    public:
     // Constructeur
     Affichage();
     
@@ -29,7 +35,7 @@ public:
      * 
      * @param p 
      */
-    void showPlateau(Plateau &p);
+    void plateau(Plateau &p);
 
     /**
      * @brief Affiche la main du joueur
@@ -37,7 +43,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showMain(Joueur j);
+    void mainJoueur(Joueur j);
 
     /**
      * @brief Affiche les tickets du joueurs
@@ -45,7 +51,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showTickets(Joueur j);
+    void tickets(Joueur j);
 
     /**
      * @brief Affiche le nombre de point du joueur
@@ -53,7 +59,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showTicketGagnant(Joueur j);
+    void score(Joueur j);
 
 
     /**
@@ -62,7 +68,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showWagonRestant(Joueur j);
+    void wagonRestant(Joueur j);
 
     
     

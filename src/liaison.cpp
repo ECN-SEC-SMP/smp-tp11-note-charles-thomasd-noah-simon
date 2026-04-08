@@ -10,7 +10,7 @@ Liaison::Liaison(Ville* nvVa,Ville* nvVb, couleur_e couleurRail, unsigned int nv
 }
 
 // accesseurs
-array<Ville*,2> Liaison::getVilles() const {
+const array<Ville*,2> & Liaison::getVilles() const {
      return this->villes;
 }
 
@@ -34,7 +34,7 @@ void Liaison::setOccupant(Joueur* nvOccupant) {
 // methodes
 bool Liaison::isOccupe() const
 {
-    bool status = (Liaison::getOccupant() == nullptr);
+    bool status = !(Liaison::getOccupant() == nullptr);
     return status;
 }
 

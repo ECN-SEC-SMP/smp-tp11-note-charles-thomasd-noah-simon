@@ -14,7 +14,7 @@ enum class region_e{
 class Ville
 {
 private:
-    std::string nom;
+    std::string nom_;
     region_e region_;
 public:
     // Constructeur par défault
@@ -27,7 +27,10 @@ public:
     // Destructeur
     ~Ville();
 
-    bool operator==(const Ville& v) const { return this->nom == v.nom; }
+    // Acesseur :
+    std::string getNom() const;
+
+    bool operator==(const Ville& v) const { return this->nom_ == v.nom_; }
 
 };
 

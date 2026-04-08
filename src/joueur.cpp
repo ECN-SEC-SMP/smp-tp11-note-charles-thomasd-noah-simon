@@ -12,7 +12,7 @@ using namespace std;
  * - wagonRestants : 45 wagons au départ (nombre standard du jeu)
  * - couleur : chaîne vide à initialiser
  */
-Joueur::Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, string couleur)
+Joueur::Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, couleur_e c)
 {
     main = vector<CarteWagon>();
 
@@ -37,9 +37,7 @@ Joueur::Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, string coul
 
     wagonRestants = 45;
 
-    couleur = "";
-
-
+    couleur = c;
 }
 
 /**

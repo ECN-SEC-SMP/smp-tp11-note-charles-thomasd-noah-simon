@@ -16,11 +16,15 @@ private:
     std::vector<CarteTicket> tickets;
     int ticketGagnes;
     int wagonRestants;
-    std::string couleur;
+    couleur_e couleur;
 
 public:
-    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, string couleur);
+    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, couleur_e c);
 
     ~Joueur();
+
+    couleur_e getCouleur(){
+        return couleur;
+    }
 };
 

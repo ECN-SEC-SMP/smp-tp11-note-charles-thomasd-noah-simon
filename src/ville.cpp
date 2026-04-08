@@ -11,23 +11,22 @@ region_e convertRegion(string c){
     return region_e::DEFAULT_REGION;
 }
 
-bool isEquivalentLiaison(const array<Ville*,2> & vTab1, const array<Ville*,2> & vTab2) {
-   return (*vTab1[0] == *vTab2[0] && *vTab1[1] == *vTab2[1]) 
-   || (*vTab1[0] == *vTab2[1] && *vTab1[1] == *vTab2[0]);
-}
 
 Ville::Ville(){
 }
 
 Ville::Ville(string nvNom)
 {
-    this->nom = nvNom;
+    this->nom_ = nvNom;
 }
 
-Ville::Ville(string nvNom,region_e c): nom(nvNom), region_(c){
+Ville::Ville(string nvNom,region_e c): nom_(nvNom), region_(c){
 }
 
 
 Ville::~Ville(){
 }
 
+string Ville::getNom() const {
+    return nom_;
+}
