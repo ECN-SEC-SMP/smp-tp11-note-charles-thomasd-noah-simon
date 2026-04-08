@@ -13,7 +13,7 @@ public:
     Carte();
     
     // Destructeur
-    ~Carte();
+    virtual ~Carte() = default; // Ajouter un destructeur virtuel
 
     // Méthodes publiques
     

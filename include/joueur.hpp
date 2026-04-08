@@ -5,6 +5,8 @@
 
 #include "carteWagon.hpp"
 #include "carteTicket.hpp"
+#include "piocheTicket.hpp"
+#include "piocheWagon.hpp"
 
 
 class Joueur
@@ -17,7 +19,7 @@ private:
     std::string couleur;
 
 public:
-    Joueur();
+    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, string couleur);
 
     ~Joueur();
 };
