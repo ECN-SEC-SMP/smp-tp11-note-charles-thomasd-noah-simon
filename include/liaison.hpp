@@ -25,19 +25,19 @@ public:
     ~Liaison();
 
     // --- accesseurs ---
-    const array<Ville*,2> & getVilles() const;
+    const array<Ville*,2> &getVilles() const;
     int getNbRails() const;
     couleur_e getCouleur() const;
     Joueur* getOccupant() const;
 
     // --- mutateurs ---
-    void setOccupant(Joueur* nvOccupant);
+    void setOccupant(Joueur *nvOccupant);
 
     // --- methodes ---
     bool isOccupe() const;
 
-    bool operator==(const Liaison& l2) const { 
-        const auto& v2 = l2.getVilles();
+    bool operator==(const Liaison &l2) const { 
+        const auto &v2 = l2.getVilles();
         return (villes[0] == v2[0] && villes[1] == v2[1])   // sens normal
             || (villes[0] == v2[1] && villes[1] == v2[0]);  // sens inverse
     }

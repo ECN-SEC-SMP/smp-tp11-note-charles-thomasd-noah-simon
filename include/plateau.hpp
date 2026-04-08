@@ -55,7 +55,8 @@ public:
      * @return true 
      * @return false 
      */
-    bool putWagon(Liaison l, Joueur j) ;
+    bool putWagon(Liaison *l, Joueur &j);
+
     
 };
 

@@ -27,7 +27,7 @@ Joueur* Liaison::getOccupant() const {
 }
 
 // mutateurs
-void Liaison::setOccupant(Joueur* nvOccupant) {
+void Liaison::setOccupant(Joueur *nvOccupant) {
     this->occupant = nvOccupant;
 }
 
