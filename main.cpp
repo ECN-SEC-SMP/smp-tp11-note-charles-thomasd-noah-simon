@@ -26,6 +26,7 @@ void testPlateau() {
     Ville* sanFrancisco= new Ville("San Francisco",region_e::OUEST);
     Ville* saltLake    = new Ville("Salt Lake City",region_e::CENTRE_OUEST);
 
+
     // Liaisons simples (une seule couleur)
     Liaison l1(losAngeles,  lasVegas,     couleur_e::ROUGE,   3);
     Liaison l2(sanFrancisco,saltLake,     couleur_e::VERT, 5);

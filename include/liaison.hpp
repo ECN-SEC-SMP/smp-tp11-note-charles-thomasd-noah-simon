@@ -18,22 +18,22 @@ private:
 
 
 public:
-    // constructeurs
+    // --- constructeurs ---
     Liaison(Ville* nvVa,Ville* nvVb, couleur_e couleurRail, unsigned int nvNbRails);
 
-    // destructeurs
+    // --- destructeurs ---
     ~Liaison();
 
-    // accesseurs
+    // --- accesseurs ---
     const array<Ville*,2> & getVilles() const;
     int getNbRails() const;
     couleur_e getCouleur() const;
     Joueur* getOccupant() const;
 
-    // mutateurs
+    // --- mutateurs ---
     void setOccupant(Joueur* nvOccupant);
 
-    // methodes
+    // --- methodes ---
     bool isOccupe() const;
 
     bool operator==(const Liaison& l2) const { 

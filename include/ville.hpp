@@ -17,18 +17,19 @@ private:
     std::string nom_;
     region_e region_;
 public:
-    // Constructeur par défault
+    // --- Constructeur par défault ---
     Ville();
 
-    // Constructeur
+    // --- Constructeur ---
     Ville(std::string nvNom);
     Ville(std::string nvNom,region_e c);
 
-    // Destructeur
+    // --- Destructeur ---
     ~Ville();
 
-    // Acesseur :
+    // --- Acesseur : ---
     std::string getNom() const;
+    region_e getRegion() const;
 
     bool operator==(const Ville& v) const { return this->nom_ == v.nom_; }
 

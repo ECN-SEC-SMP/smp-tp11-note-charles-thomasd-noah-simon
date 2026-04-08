@@ -30,3 +30,8 @@ Ville::~Ville(){
 string Ville::getNom() const {
     return nom_;
 }
+
+region_e Ville::getRegion() const{
+    return region_;
+}
+

@@ -16,6 +16,14 @@ Affichage::~Affichage(){
     
 }
 
+void Affichage::region(const Ville *v){
+    if (v == nullptr) {
+        cout << couleurTerminal_n::ROUGE <<left << setw(L) << "error";
+        return;
+    }
+    region(v->getRegion());
+}
+
 void Affichage::region(region_e cote){
     switch (cote){
         case region_e::OUEST:
@@ -114,7 +122,7 @@ void Affichage::plateau(Plateau &p){
 
         //On sauvegarde une fois pour pas appeler plusieurs fois
         const auto villesTab = n.getVilles();
-        
+
         //Afficher Ville 1 :
         ville(villesTab[0]);
 

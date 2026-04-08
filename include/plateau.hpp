@@ -1,7 +1,7 @@
 #ifndef PLATEAU_HPP
 #define PLATEAU_HPP
 
-//public
+// --- public ---
 #include <vector>
 #include <array>
 #include <string>
@@ -9,31 +9,31 @@
 #include <array>
 #include <queue>
 #include <algorithm>
-//priver
+// --- priver ---
 #include "liaison.hpp"
 #include "ville.hpp"
 
 class Plateau {
 private:
-    // Attributs privés
+    // --- Attributs privés ---
     std::vector<Liaison> liaisons_;
     
 public:
-    // Constructeur par défault
+    // --- Constructeur par défault ---
     Plateau();
-    // Constructeur
+    // --- Constructeur ---
     Plateau(std::vector<Liaison> data);
     
-    // Destructeur :
+    // --- Destructeur : ---
     ~Plateau();
 
-    //Accesseur :
+    // --- Accesseur : ---
     bool getLiaisonOccupe(Liaison l) const;
     const std::vector<Liaison> & getLiaisons() const;
 
 
 
-    // Méthodes : 
+    // --- Méthodes : --- 
     
 
     /**
@@ -59,4 +59,4 @@ public:
     
 };
 
-#endif // PLATEAU_H
+#endif // --- PLATEAU_H ---

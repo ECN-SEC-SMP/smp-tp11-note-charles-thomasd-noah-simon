@@ -6,17 +6,17 @@ using namespace std;
 
 class Carte {
 private:
-    // Attributs privés
+    // --- Attributs privés ---
     
 public:
-    // Constructeur
+    // --- Constructeur ---
     Carte();
     
-    // Destructeur
-    virtual ~Carte() = default; // Ajouter un destructeur virtuel
+    // --- Destructeur ---
+    virtual ~Carte() = default; // --- Ajouter un destructeur virtuel ---
 
-    // Méthodes publiques
+    // --- Méthodes publiques ---
     
 };
 
-#endif // PLATEAU_H
+#endif // --- CARTE_H ---
