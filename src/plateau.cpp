@@ -26,8 +26,7 @@ const vector<Liaison> & Plateau::getLiaisons() const{
 
 
 bool Plateau::isLink(const array<const Ville*,2> &villes, const Joueur *j) const {
-    if (!isLink(villes[0], villes[1], j)) return false;
-    else return true;
+    return (!isLink(*villes[0], *villes[1], j));
 }
 
 bool Plateau::isLink(const Ville &vA, const Ville &vB, const Joueur *j) const {

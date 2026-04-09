@@ -42,8 +42,7 @@ public:
      * @return true 
      * @return false 
      */
-    bool Plateau::isLink(const array<const Ville*,2> &villes, const Joueur *j) const {
- const;
+    bool isLink(const array<const Ville*,2> &villes, const Joueur *j) const;
 
     /**
      * @brief Vérifie si 2 Ville sont reliées par un joueur spécifique
