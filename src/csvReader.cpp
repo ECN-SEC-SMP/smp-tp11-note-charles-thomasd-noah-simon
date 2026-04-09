@@ -9,7 +9,28 @@
 
 using namespace std;
 
+// --- Méthode privés ---
+Ville* Reader::getVillePtr(std::string nom, region_e r){
+    if (villeMap.find(nom) == villeMap.end()){ 
+        villeMap[nom] = new Ville(nom,r);
+    }
+    return villeMap[nom];
+}
+    
 
+// --- Lifecycle (Constructeurs / Destructeur) ---
+Reader::Reader(){
+}
+
+Reader::~Reader(){
+    for(const auto &n : villeMap) {
+        delete n.second; //c++ reference map (c++11 alternative)
+    }
+    //vide tous les élèments de la map
+    villeMap.clear();
+}
+
+// --- API Public ---
 vector<Liaison> Reader::readMaps(string path) {
     vector<Liaison> csvParser;
     string line, csvWordData;
@@ -35,8 +56,8 @@ vector<Liaison> Reader::readMaps(string path) {
         }
 
         //Conversion
-        Ville * vA = new Ville(liaisonCar[0],convertRegion(liaisonCar[2]));
-        Ville * vB = new Ville(liaisonCar[1],convertRegion(liaisonCar[3]));
+        Ville * vA = getVillePtr(liaisonCar[0],convertRegion(liaisonCar[2]));
+        Ville * vB = getVillePtr(liaisonCar[1],convertRegion(liaisonCar[3]));
         couleur_e colorLiaison = colorConverteur(liaisonCar[4]);
         unsigned int lenghtLiaison = stoi(liaisonCar[5]);
 
@@ -75,8 +96,8 @@ PiocheTicket Reader::readTickets(string path) {
 
         //Conversion
         //tickedID non utilisé
-        Ville * vA = new Ville(piocheCar[1]);
-        Ville * vB = new Ville(piocheCar[2]);
+        Ville * vA = getVillePtr(piocheCar[1],region_e::DEFAULT_REGION);
+        Ville * vB = getVillePtr(piocheCar[2],region_e::DEFAULT_REGION);
 
         //Création de la liaison
         CarteTicket ticket(vA, vB);

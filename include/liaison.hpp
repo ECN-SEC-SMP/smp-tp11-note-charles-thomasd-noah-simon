@@ -11,11 +11,11 @@ using namespace std;
 class Liaison
 {
 private:
+    // --- Attributs privés ---
     array<Ville*,2> villes;
     couleur_e couleurRail;
     Joueur* occupant;
     int nbRails;
-
 
 public:
     // --- constructeurs ---
@@ -29,6 +29,9 @@ public:
     int getNbRails() const;
     couleur_e getCouleur() const;
     Joueur* getOccupant() const;
+    
+
+    //test
 
     // --- mutateurs ---
     void setOccupant(Joueur *nvOccupant);

@@ -5,17 +5,17 @@
 #include <queue>
 #include <set>
 
+// --- Lifecycle (Constructeurs / Destructeur) ---
 Plateau::Plateau(){
-    
 }
 
 Plateau::Plateau(vector<Liaison> data) : liaisons_(data){
 }
 
 Plateau::~Plateau(){
-    
 }
 
+// --- API Public ---
 bool Plateau::getLiaisonOccupe(Liaison l) const{
     return l.isOccupe();
 }
