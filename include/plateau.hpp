@@ -3,12 +3,9 @@
 
 // --- public ---
 #include <vector>
-#include <array>
 #include <string>
-#include <stdlib.h>
 #include <array>
-#include <queue>
-#include <algorithm>
+
 // --- priver ---
 #include "liaison.hpp"
 #include "ville.hpp"
@@ -45,7 +42,20 @@ public:
      * @return true 
      * @return false 
      */
-    bool isLink(array<Ville*,2> villeIsLink, Joueur * j) const;
+    bool Plateau::isLink(const array<const Ville*,2> &villes, const Joueur *j) const {
+ const;
+
+    /**
+     * @brief Vérifie si 2 Ville sont reliées par un joueur spécifique
+     * 
+     * @param vA 
+     * @param vB 
+     * @param j 
+     * @return true 
+     * @return false 
+     */
+    bool isLink(const Ville &vA, const Ville &vB, const Joueur *j) const;
+
 
     /**
      * @brief 
