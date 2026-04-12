@@ -52,3 +52,36 @@ Joueur::~Joueur()
     // Les vecteurs sont automatiquement détruits via leur destructeur
     // Pas de pointeurs à libérer manuellement
 }
+
+const vector<CarteWagon>* Joueur::get_main() const{
+    return &main;
+}
+
+const vector<CarteTicket>* Joueur::get_tickets() const{
+    return &tickets;
+}
+const int* Joueur::get_ticketGagnes() const{
+    return &ticketGagnes;
+}
+const int* Joueur::get_wagonRestants() const{
+    return &wagonRestants;
+}
+const string* Joueur::get_couleur() const{
+    return &couleur;
+}
+
+void Joueur::set_main(vector<CarteWagon> &newMain){
+    main = newMain;
+}
+void Joueur::set_tickets(vector<CarteTicket> &newTickets){
+    tickets = newTickets;
+}
+void Joueur::set_ticketGagnes(int &newTicketGagnes){
+    ticketGagnes = newTicketGagnes;
+}
+void Joueur::set_wagonRestants(int &newWagonRestants){
+    wagonRestants = newWagonRestants;
+}
+void Joueur::set_couleur(string &newCouleur){
+    couleur = newCouleur;
+}
