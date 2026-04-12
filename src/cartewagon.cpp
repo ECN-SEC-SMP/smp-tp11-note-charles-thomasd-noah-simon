@@ -1,11 +1,15 @@
 #include "carteWagon.hpp"
 
-CarteWagon::CarteWagon(couleur_e couleur) : couleur(couleur){
-    this->couleur = couleur;
+// --- Lifecycle (Constructeurs / Destructeur) ---
+CarteWagon::CarteWagon(couleur_e c) : couleur(c){
 }
 
+CarteWagon::~CarteWagon(){
+    
+}
+
+// --- Méthodes publiques ---
 couleur_e CarteWagon::getCouleur(){
     return couleur;
 }
 
-CarteWagon::~CarteWagon(){}

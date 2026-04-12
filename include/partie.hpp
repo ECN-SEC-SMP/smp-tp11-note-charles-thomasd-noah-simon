@@ -11,7 +11,7 @@ using namespace std;
 #include "csvReader.hpp"
 
 
-class partie
+class Partie
 {
 private:
     Plateau plat;
@@ -19,9 +19,10 @@ private:
     PiocheTicket piocheTicket;
     PiocheWagon piocheWagon;
 public:
-    partie(string mapCVS, string ticketCSV);
+    Partie();
+    Partie(string mapCVS, string ticketCSV);
     
-    ~partie();
+    ~Partie();
 };
 
 

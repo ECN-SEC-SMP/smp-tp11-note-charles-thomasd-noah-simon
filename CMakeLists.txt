@@ -1,75 +1,55 @@
-# Version minimale de CMake requise pour configurer ce projet.
-# 3.14 est nécessaire pour utiliser FetchContent proprement.
+# Version minimale de CMake
 cmake_minimum_required(VERSION 3.14)
 
-# Nom du projet (affiché dans les outils et utilisé en interne par CMake).
-project(TP11)
+project(TP11_Aventurier_du_rail LANGUAGES CXX C)
 
-# Définition du standard C++ utilisé pour la compilation.
-# Ici on impose C++17 (remplacer par 11 si nécessaire).
+#lib standard C++17
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True) 
 
-# Oblige le compilateur à respecter strictement ce standard.
-# Si le compilateur ne le supporte pas, la configuration échoue.
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Permet d'utiliser le module FetchContent,
-# qui sert à télécharger automatiquement une dépendance externe.
+# Permet d'utiliser le module FetchContent
 include(FetchContent)
-
 # Déclaration de la dépendance GoogleTest.
-# CMake va télécharger le dépôt Git à la configuration du projet.
 FetchContent_Declare(
   googletest
   # Adresse du dépôt officiel
   GIT_REPOSITORY https://github.com/google/googletest.git
-
   # Version précise utilisée (bonne pratique pour éviter les surprises)
   GIT_TAG v1.17.0
-
-  # Assure que les fichiers extraits ont un timestamp cohérent,
-  # ce qui évite certains problèmes de recompilation.
+  # Assure que les fichiers extraits ont un timestamp cohérent
   DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
-file(GLOB_RECURSE INCLUDES "include/*.hpp")
-
-# Ne pas construire GoogleMock si on n'en a pas besoin.
-# Cela accélère la compilation et simplifie le projet.
+# Ne pas construire GoogleMock si on n'en a pas besoin
+# Cela accélère la compilation et simplifie le projet
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 
-# Cette option est utile principalement sous Windows (MSVC).
-# Elle force GoogleTest à utiliser la même bibliothèque runtime
-# que le projet principal, afin d'éviter des erreurs de linkage.
-# Sur macOS et Linux, cette ligne est généralement sans effet.
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
-# Télécharge et configure effectivement GoogleTest
-# comme s'il faisait partie du projet.
+# Télécharge et configure  GoogleTest comme s'il faisait partie du projet
 FetchContent_MakeAvailable(googletest)
 
-# Active le système de tests CTest dans CMake.
-# Sans cette ligne, la commande "ctest" ne fonctionnerait pas.
+# Active la commande "./ctest" dans CMake.
 enable_testing()
 
-# Déclaration de l'exécutable de tests.
-# Il sera construit à partir des fichiers suivants.
+# Tous les fichiers source du dossier src
+file(GLOB_RECURSE SRC_FILES "src/*.cpp") 
+# Tous les fichiers des googletests  (c/c++)
+file(GLOB_RECURSE GTESTS_FILES "tests/*.cpp") 
+
+# Creation de l'executable principal
+add_executable(aventurierDuRail.out
+    main.cpp       
+    ${SRC_FILES}    # classes (Ville, Liaison...)
+)
+
+#Executable de test
 add_executable(mytest.out
-    ${SOURCES}
-    main.cpp
+    ${SRC_FILES}   
+    ${GTESTS_FILES} # Fichiers de tests
 )
 
-# Ajout d'options de compilation spécifiques à cette cible :
-# -Wall   : active la plupart des warnings
-# -Wextra : warnings supplémentaires
-# -pthread: nécessaire pour GoogleTest
-# -g      : ajoute les symboles de debug
-target_compile_options(mytest.out PRIVATE -Wall -Wextra -pthread -g)
-
-target_include_directories(mytest.out PUBLIC
-    ${CMAKE_SOURCE_DIR}/include
-)
+# On dit à la cible 'mytest.out' d'aller chercher ses headers dans le dossier 'include'
+target_include_directories(aventurierDuRail.out PRIVATE include)
+target_include_directories(mytest.out PRIVATE include)
 
 # Liaison de l'exécutable avec GoogleTest.
 # GTest::gtest_main fournit :
@@ -79,11 +59,22 @@ target_link_libraries(mytest.out
     GTest::gtest_main
 )
 
+# Ajout d'options de compilation spécifiques au main :
+# -Wall   : active la plupart des warnings
+# -Wextra : warnings supplémentaires
+# -g      : ajoute les symboles de debug
+target_compile_options(aventurierDuRail.out PRIVATE -Wall -Wextra -g)
+
+# Ajout d'options de compilation spécifiques au gtest :
+# -pthread: nécessaire pour GoogleTest
+target_compile_options(mytest.out PRIVATE -Wall -Wextra -pthread -g)
+
+
+
 # Permet d'utiliser les fonctions spécifiques à GoogleTest dans CMake.
 include(GoogleTest)
 
 # Cette commande exécute automatiquement l'exécutable de test
-# pour détecter tous les tests GoogleTest qu’il contient.
-# Chaque test est enregistré individuellement dans CTest.
 # Cela permet d'utiliser la commande "ctest" pour les exécuter.
 gtest_discover_tests(mytest.out)
+

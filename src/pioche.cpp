@@ -6,12 +6,11 @@
 
 using namespace std;
 
-
-
+// --- Constructeur ---
 Pioche::Pioche() {
 }
 
-
+// --- Destructeur ---
 Pioche::~Pioche() {
 }
 

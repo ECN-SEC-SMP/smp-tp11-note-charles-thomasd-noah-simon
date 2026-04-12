@@ -6,7 +6,7 @@
  * - les joueurs
  * - les Cartes wagon
  */
-enum couleur_e{
+enum class couleur_e{
     JAUNE,
     BLANC,
     VERT, 
@@ -24,13 +24,13 @@ enum couleur_e{
  * @return couleur_e 
  */
 inline couleur_e colorConverteur(std::string c){
-    if (c == "yellow") return JAUNE;
-    if (c == "white")  return BLANC;
-    if (c == "green")  return VERT;
-    if (c == "black")  return NOIR;
-    if (c == "blue")   return BLEU;
-    if (c == "red")    return ROUGE;
-    return COULEUR_INCONNUE;
+    if (c == "yellow") return couleur_e::JAUNE;
+    if (c == "white")  return couleur_e::BLANC;
+    if (c == "green")  return couleur_e::VERT;
+    if (c == "black")  return couleur_e::NOIR;
+    if (c == "blue")   return couleur_e::BLEU;
+    if (c == "red")    return couleur_e::ROUGE;
+    return couleur_e::COULEUR_INCONNUE;
 }
 
 namespace couleurTerminal_n{
@@ -47,15 +47,18 @@ namespace couleurTerminal_n{
     const std::string NOIR    = "\033[90m";   
     const std::string BLEU    = "\033[34m";
     const std::string ROUGE   = "\033[31m";
+
+    //couleur suplémentaire pour l'affichage
+    const std::string GRIS   = "\033[90m";
 }
 
 
-inline const std::string convertCouleur(couleur_e c){
-    if (c == JAUNE) return couleurTerminal_n::JAUNE;
-    if (c == BLANC) return couleurTerminal_n::BLANC;
-    if (c == VERT) return couleurTerminal_n::VERT;
-    if (c == NOIR) return couleurTerminal_n::NOIR;
-    if (c == BLEU) return couleurTerminal_n::BLEU;
-    if (c == ROUGE) return couleurTerminal_n::ROUGE;
+inline const std::string  convertCouleur(couleur_e c){
+    if (c == couleur_e::JAUNE) return couleurTerminal_n::JAUNE;
+    if (c == couleur_e::BLANC) return couleurTerminal_n::BLANC;
+    if (c == couleur_e::VERT) return couleurTerminal_n::VERT;
+    if (c == couleur_e::NOIR) return couleurTerminal_n::NOIR;
+    if (c == couleur_e::BLEU) return couleurTerminal_n::BLEU;
+    if (c == couleur_e::ROUGE) return couleurTerminal_n::ROUGE;
     return "";
 }
