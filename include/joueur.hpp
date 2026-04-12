@@ -21,7 +21,7 @@ private:
     string couleur;
 
 public:
-    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, string couleur);
+    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, string Jcouleur);
 
     ~Joueur();
 };
