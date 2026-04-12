@@ -12,16 +12,19 @@
 class Joueur
 {
 private:
-    std::vector<CarteWagon> main;
-    std::vector<CarteTicket> tickets;
-    int ticketGagnes;
+    // --- Attributs privés ---
+    std::vector<CarteWagon*> main;
+    std::vector<CarteTicket*> tickets;
+    int nbticketGagnes;
     int wagonRestants;
     couleur_e couleur;
 
 public:
-    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, couleur_e c);
-
+    // --- Constructeur ---
+    Joueur(PiocheWagon& piochWeagon, PiocheTicket& piocheTicket, couleur_e c);
+    // --- Destructeur ---
     ~Joueur();
+
 
     couleur_e getCouleur(){
         return couleur;
