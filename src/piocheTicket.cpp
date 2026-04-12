@@ -1,33 +1,34 @@
 #include "piocheTicket.hpp"
-#include <iostream>
-#include <algorithm>
-#include <random>
-#include <vector>
 
 using namespace std;
 
+// --- Constructeur par défault ---
 PiocheTicket::PiocheTicket(){
+
+}
+
+// --- Constructeur ---
+PiocheTicket::PiocheTicket(vector<CarteTicket*> vecteurTickets) {
+    for (CarteTicket* c : vecteurTickets) {
+        pioche_.push_back(c);//déplade de la defausse vers la
+    }
 }
 
 
-PiocheTicket::PiocheTicket(vector<CarteTicket> vecteurTickets) 
-: pioche_(vecteurTickets){
-    // Initialisation de la pioche avec des tickets
-}
 
-
+// --- Destructeur ---
 PiocheTicket::~PiocheTicket() {
 
 }
 
 
-unique_ptr<Carte> PiocheTicket::piocher() {
+const Carte * PiocheTicket::piocher() {
     if (pioche_.empty()) {
-        return nullptr; // plus de carte
+        return nullptr; // plus de carte à piocher
     }
-    CarteTicket ticket = pioche_.back();
+    Carte *ticketPtr = pioche_.back();
     pioche_.pop_back();
-    return make_unique<Carte>(ticket);;
+    return ticketPtr;
 }
 
 bool PiocheTicket::estVide() const {

@@ -7,10 +7,10 @@ using namespace std;
 
 class PiocheWagon : Pioche{
 private:
-    vector<CarteWagon> pioche_;
-    vector<CarteWagon> defausse_;
+    // --- Attributs privés ---
+    vector<CarteWagon*> defausse_;
 
-
+    // --- Méthodes privées ---
     /**
      * @brief Génère les cartes wagon
      * 
@@ -19,24 +19,36 @@ private:
     void genWagons();
 
 public:
-    /**
-     * @brief Constructeur de la classe PiocheWagon
-     * 
-     * @note génère les cartes wagon 
-     */
+    // --- Constructeur par défault ---
     PiocheWagon();
+    // --- Destructeur ---
     ~PiocheWagon();
 
+
+    // --- Méthodes publiques --- 
 
     /**
      * @brief Réinitialise la pioche de cartes wagon lorsque celle-ci est vide
      * Les cartes utilisées et placées dans la défausse (supprimées) deviennent la nouvelle pioche. 
      */
     void resetPioche();
-    void addDefausse(const CarteWagon& carte);
+
+    /**
+     * @brief ajoute une carte jouer à la défausse
+     * 
+     * @param c 
+     */
+    void addDefausse(CarteWagon *c);
 
 
-    //**Vérifie si la pioche est vide */
+
+    // --- Méthodes héritées ---
+    /**
+     * @brief Vérifie si la pioche est vide
+     * 
+     * @return true 
+     * @return false 
+     */
     bool estVide() const override;
 
     /**
@@ -45,6 +57,6 @@ public:
      * 
      * @return carteWagon 
      */
-    unique_ptr<Carte> piocher() override;
+    const Carte * piocher() override;
 };
 

@@ -12,17 +12,20 @@
 class CarteWagon : public Carte
 {
 private:
+    // --- Attributs privés ---
     couleur_e couleur;
 public:
 
-
+    // --- Lifecycle (Constructeurs / Destructeur) ---
     /**
      * @brief Construit une nouvelle Carte wagon avec une couleur spécifique
      * 
-     * @param couleur 
+     * @param c 
      */
-    CarteWagon(couleur_e couleur);
+    CarteWagon(couleur_e c);
+    ~CarteWagon();
 
+    // --- Méthodes publiques ---
     /**
      * @brief Renvoie la couleur de la Carte wagon
      * 
@@ -30,5 +33,4 @@ public:
      */
     couleur_e getCouleur();
 
-    ~CarteWagon();
 };

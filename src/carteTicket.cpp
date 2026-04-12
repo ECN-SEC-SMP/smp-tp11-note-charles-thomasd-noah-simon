@@ -1,6 +1,6 @@
 #include "carteTicket.hpp"
 
-
+using namespace std;
 
 CarteTicket::CarteTicket(){
 
@@ -15,10 +15,12 @@ CarteTicket::CarteTicket(array<Ville*,nbVilles_> v) : villes_(v),valider_(false)
 {
 }
 
-CarteTicket::~CarteTicket(){}
+CarteTicket::~CarteTicket(){
+
+}
 
 
-array<Ville*,2> CarteTicket::getVilles(){
+array<Ville*,CarteTicket::nbVilles_> CarteTicket::getVilles() const{
     return villes_;
 }
 

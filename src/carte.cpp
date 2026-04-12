@@ -3,3 +3,8 @@
 Carte::Carte() {
 
 }
+
+Carte::~Carte() {
+
+}
+
