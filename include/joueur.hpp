@@ -3,8 +3,6 @@
 #include <vector>
 #include<string>
 
-using namespace std;
-
 #include "carteWagon.hpp"
 #include "carteTicket.hpp"
 #include "piocheTicket.hpp"
@@ -14,22 +12,24 @@ using namespace std;
 class Joueur
 {
 private:
-    vector<CarteWagon> main;
-    vector<CarteTicket> tickets;
+    std::vector<CarteWagon> main;
+    std::vector<CarteTicket> tickets;
     int ticketGagnes;
     int wagonRestants;
-    string couleur;
+    couleur_e couleur;
 
 public:
-    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, string Jcouleur);
+    Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, couleur_e c);
 
     ~Joueur();
 
     const vector<CarteWagon>* get_main() const;
     const vector<CarteTicket>* get_tickets() const;
-    const int* get_ticketGagnes() const;
-    const int* get_wagonRestants() const;
-    const string* get_couleur() const;
+    const int get_ticketGagnes() const;
+    couleur_e getCouleur(){
+        return couleur;
+    }
+
 
     void set_main(vector<CarteWagon> &newMain);
     void set_tickets(vector<CarteTicket> &newTickets);

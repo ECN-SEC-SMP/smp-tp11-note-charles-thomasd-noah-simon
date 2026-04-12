@@ -1,36 +1,79 @@
 #ifndef AFFICHAGE_HPP
 #define AFFICHAGE_HPP
 
-//public
+// --- public ---
 #include <vector>
 
-//priver
+// --- priver ---
 #include "plateau.hpp"
 #include "joueur.hpp"
 
-
-using namespace std;
-
-
 class Affichage{
 private:
-    // Attributs privés
+    // --- Attributs privés ---
     vector<Liaison> liaisons;
-    
-public:
-    // Constructeur
+
+    // --- Méthode privés ---
+    /**
+     * @brief affiche la region
+     * @param cote 
+     */
+    void region(region_e cote);
+
+    /**
+     * @brief affiche la region de la ville
+     * @param cote 
+     */
+    void region(const Ville *v);
+
+    /**
+     * @brief Affiche le statut d'une liaison (occupée par un joueur ou vide).
+     * @param l La liaison à analyser.
+     * 
+     * @note Affiche "[vide]" en gris si libre, ou le nom du joueur en couleur si occupée.
+     */
+    void statusLiaison(const Liaison &l);
+
+    /**
+     * @brief Affiche le statut de deux liaisons doubles (voies doubles).
+     * @param l1 La première liaison.
+     * @param l2 La deuxième liaison.
+     * 
+     * @note Pour chaque liaisons affiche "[vide]" en gris si libre, ou le nom du joueur en couleur 
+     */
+    void statusLiaison(const Liaison &l1, const Liaison &l2);
+
+    /**
+     * @brief Affiche  les rails d'une liaison simple.
+     * @param l1 La liaison à afficher.
+     */
+    void liaison(const Liaison &l1);
+
+    /**
+     * @brief Affiche graphiquement les rails de deux liaisons parallèles.
+     * @param l1 La première liaison.
+     * @param l2 La deuxième liaison.
+     */
+    void liaison(const Liaison &l1, const Liaison &l2);
+
+    /**
+     * @brief Affiche le nom d'une ville de manière formatée.
+     * @param v Pointeur vers la ville à afficher.
+     * @note Gère le cas où le pointeur est nul pour éviter un crash.
+     */
+    void ville(const Ville *v);
+
+    public:
+    // --- Lifecycle (Constructeurs / Destructeur) ---
     Affichage();
-    
-    // Destructeur
     ~Affichage();
 
-    // Méthodes publiques
+    // --- API Public ---
     /**
      * @brief affiche le plateau mis  jour
-     * 
      * @param p 
      */
-    void showPlateau(Plateau p);
+    void plateau(Plateau &p);
 
     /**
      * @brief Affiche la main du joueur
@@ -38,7 +81,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showMain(Joueur j);
+    void mainJoueur(Joueur j);
 
     /**
      * @brief Affiche les tickets du joueurs
@@ -46,7 +89,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showTickets(Joueur j);
+    void tickets(Joueur j);
 
     /**
      * @brief Affiche le nombre de point du joueur
@@ -54,7 +97,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showTicketGagnant(Joueur j);
+    void score(Joueur j);
 
 
     /**
@@ -63,10 +106,7 @@ public:
      * @return true 
      * @return false 
      */
-    void showWagonRestant(Joueur j);
-
-    
-    
+    void wagonRestant(Joueur j);
 };
 
-#endif // PLATEAU_H
+#endif // --- PLATEAU_H ---

@@ -10,7 +10,7 @@ Liaison::Liaison(Ville* nvVa,Ville* nvVb, couleur_e couleurRail, unsigned int nv
 }
 
 // accesseurs
-array<Ville*,2> Liaison::getVilles() const {
+const array<Ville*,2> & Liaison::getVilles() const {
      return this->villes;
 }
 
@@ -27,20 +27,20 @@ Joueur* Liaison::getOccupant() const {
 }
 
 // mutateurs
-void Liaison::setOccupant(Joueur* nvOccupant) {
+void Liaison::setOccupant(Joueur *nvOccupant) {
     this->occupant = nvOccupant;
 }
 
 // methodes
-bool Liaison::isOccupe()
+bool Liaison::isOccupe() const
 {
-    bool status = (Liaison::getOccupant() == nullptr);
+    bool status = !(Liaison::getOccupant() == nullptr);
     return status;
 }
 
 // destructeurs
 Liaison::~Liaison(){
-    for (unsigned int i = 0; i < villes.size(); i++){
-        delete villes[i];
-    }
+    // for (unsigned int i = 0; i < villes.size(); i++){
+    //     delete villes[i];
+    // }
 }

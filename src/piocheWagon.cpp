@@ -14,13 +14,13 @@ void PiocheWagon::genWagons() {
     pioche_.clear(); // reset le vecteur 
     for (int i = 0; i < 6; ++i) {
         for (int j = 0; j < 10; ++j) {
-            pioche_.push_back(CarteWagon(static_cast<couleur_e>(j))); // Ajout des cartes wagon de différentes couleurs
+            pioche_.push_back( new CarteWagon(static_cast<couleur_e>(j)) ); // Ajout des cartes wagon de différentes couleurs
         }
     }
     for (int i = 0; i < 12; ++i) {
-        pioche_.push_back(CarteWagon(MULTICOLORE)); // Ajout des locomotives
+        pioche_.push_back( new CarteWagon(couleur_e::MULTICOLORE) ); // Ajout des wagons multicolore
     }
-    // Mélange des cartes wagon
+    // Mélange la pioche
     shuffle(pioche_.begin(), pioche_.end(), rng);
 }
 /********************************/
@@ -37,7 +37,7 @@ PiocheWagon::~PiocheWagon(){
 };
 
 
-unique_ptr<Carte> PiocheWagon::piocher() {
+const Carte * PiocheWagon::piocher() {
     if (pioche_.empty()) {
         if (defausse_.empty()){
             return nullptr; // on ne retourne pas de carte
@@ -45,19 +45,21 @@ unique_ptr<Carte> PiocheWagon::piocher() {
             resetPioche();
         }
     }
-    CarteWagon carte = pioche_.back(); //Copy la carte
+    Carte * cWagonPtr = pioche_.back(); //Copy la carte
     pioche_.pop_back(); // supprime la carte du vecteur
-    return make_unique<Carte>(carte);
+    return cWagonPtr;
 }
 
 
-void PiocheWagon::addDefausse(const CarteWagon& carte) {
-    defausse_.push_back(carte);
+void PiocheWagon::addDefausse( CarteWagon *c) {
+    defausse_.push_back(c);
 }
 
 
 void PiocheWagon::resetPioche() {
-    pioche_ = defausse_;
+    for (CarteWagon* c : defausse_) {
+        pioche_.push_back(c);//déplade de la defausse vers la
+    }
     shuffle(pioche_.begin(), pioche_.end(), rng); //Melange
     defausse_.clear(); //vide la defausse
 }

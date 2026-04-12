@@ -7,24 +7,18 @@ using namespace std;
 
 class PiocheTicket : Pioche {
 private:
-    vector<CarteTicket> pioche_;
+    
 
 
 public:
-
+    // --- Constructeur par défault ---
     PiocheTicket();
-
-
-
-    /**
-     * @brief Constructeur de la classe Pioche ticket
-     * 
-     */
-    PiocheTicket(vector<CarteTicket> vecteurTickets);
-
+    // --- Constructeur ---
+    PiocheTicket(vector<CarteTicket*> vecteurTickets);
+    // --- Destructeur ---
     ~PiocheTicket();
 
-    //de la classe fille
+    // --- Méthodes héritées ---
     bool estVide() const override;
-    unique_ptr<Carte> piocher() override;
+    const Carte * piocher() override;
 };

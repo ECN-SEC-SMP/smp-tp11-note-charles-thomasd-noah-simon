@@ -1,84 +1,98 @@
 #include "plateau.hpp"
+#include <queue>
+#include <algorithm>
+#include <map>
+#include <queue>
+#include <set>
 
+// --- Lifecycle (Constructeurs / Destructeur) ---
+Plateau::Plateau(){
+}
 
-Plateau::Plateau(vector<Liaison> data){
-    this->liaisons = data;
-
+Plateau::Plateau(vector<Liaison> data) : liaisons_(data){
 }
 
 Plateau::~Plateau(){
-    
 }
 
+// --- API Public ---
 bool Plateau::getLiaisonOccupe(Liaison l) const{
     return l.isOccupe();
-    
 }
-//code à vérifier mais c'est chatgpt donc pas de raison
 
-bool Plateau::isLink(array<Ville*,2> villeIsLink, Joueur * j)const{
-    if (j == nullptr || villeIsLink[0] == nullptr || villeIsLink[1] == nullptr)
-        return false;
+const vector<Liaison> & Plateau::getLiaisons() const{
+    return liaisons_;
+}
 
-    // Si les deux villes sont les mêmes
-    if (villeIsLink[0] == villeIsLink[1])
-        return true;
 
-    queue<Ville*> aVisiter;
-    vector<Ville*> visitees;
+bool Plateau::isLink(const array<const Ville*,2> &villes, const Joueur *j) const {
+    return (!isLink(*villes[0], *villes[1], j));
+}
 
-    aVisiter.push(villeIsLink[0]);
-    visitees.push_back(villeIsLink[0]);
+bool Plateau::isLink(const Ville &vA, const Ville &vB, const Joueur *j) const {
+    if (j == nullptr) return false; // Si le pointeur est null on sort
 
-    while (!aVisiter.empty())
-    {
-        Ville* villeCourante = aVisiter.front();
-        aVisiter.pop();
-
-        // Parcours de toutes les liaisons du plateau
-        for(const Liaison& liaison : liaisons)
-        {
-          
-            // On ne garde que les liaisons occupées par le joueur
-            if (liaison.getOccupant() != j)
-                continue;
-
-            std::array<Ville*,2> villes = liaison.getVilles();
-
-            Ville* voisine = nullptr;
-
-            if (villes[0] == villeCourante)
-                voisine = villes[1];
-            else if (villes[1] == villeCourante)
-                voisine = villes[0];
-
-            // Si la liaison ne touche pas la ville courante
-            if (voisine == nullptr)
-                continue;
-
-            // Si on atteint la ville cible
-            if (voisine == villeIsLink[1])
-                return true;
-
-            // Si pas encore visitée, on l'ajoute
-            if (std::find(visitees.begin(), visitees.end(), voisine) == visitees.end())
-            {
-                visitees.push_back(voisine);
-                aVisiter.push(voisine);
-            }
+    //On crée une map qui stocke l'ensemble des villes qui sont accesibles à partir d'une ville source
+    map<const Ville*, vector<const Ville*>> villeRelierParJoueur;
+    for (unsigned int i = 0; i < liaisons_.size(); i++) {
+        if (liaisons_[i].getOccupant() == j) {
+            const auto villeRelierTab = liaisons_[i].getVilles();
+            //Ville 1
+            villeRelierParJoueur[villeRelierTab[0]].push_back(villeRelierTab[1]);
+            //Ville 2
+            villeRelierParJoueur[villeRelierTab[1]].push_back(villeRelierTab[0]);
         }
     }
 
+    //if va || vb ne sont pas présent dans la map return false 
+    if (villeRelierParJoueur.find(&vA) == villeRelierParJoueur.end() ||
+        villeRelierParJoueur.find(&vB) == villeRelierParJoueur.end()) 
+    {
+        return false;
+    }
+
+    //On vérifie si les 2 villes ne sont pas cotes à cotes
+    //const auto& vosionsVa = villeRelierParJoueur[&vA];
+    //if (find(vosionsVa.begin(), vosionsVa.end(), &vB) != vosionsVa.end())
+    //{
+    //    //Si il est dans les voisins direct return true
+    //    return true;
+    //}
+
+    queue<const Ville*> toVisite; toVisite.push(&vA);
+    //vector<const Ville*> visiter; visiter.push_back(&vA); // Plus optimisée avec set (Gemini)
+    set<const Ville*> visiter; visiter.insert(&vA);
+
+    while (!toVisite.empty()){
+        const Ville* visiteActuelle = toVisite.front();
+        toVisite.pop();  //Suprimer la ville actuelle de la queue
+        const auto& vosionsVisiteActuelle = villeRelierParJoueur[visiteActuelle];
+
+        if (find(vosionsVisiteActuelle.begin(), vosionsVisiteActuelle.end(), &vB) != vosionsVisiteActuelle.end())
+        {
+            //Si il est dans les voisins direct return true
+            return true;
+        } else {
+            // sinon ajouter dans la queue tous les voisins qui nont pas déjà été visiter 
+            for(const auto &n : vosionsVisiteActuelle){
+                if (visiter.find(n) == visiter.end())   //(find(visiter.begin(), visiter.end(), n) == visiter.end()) // Plus optimisée avec set (Gemini)
+                {
+                    toVisite.push(n);
+                    //Ajouter la ville actuelle dans la list des villes déjà visiteée
+                    visiter.insert(n);
+                }
+            }
+        }
+    }
     return false;
 }
 
 
-
-
-bool Plateau::putWagon(Liaison l,Joueur j){
-    if (l.isOccupe()) return false;
-    else {
-        l.setOccupant(&j);
+bool Plateau::putWagon(Liaison *l, Joueur &j){
+    if (l->isOccupe() ||(l == nullptr)) {
+        return false;
+    } else {
+        l->setOccupant(&j);
         return true;
     }
 }
