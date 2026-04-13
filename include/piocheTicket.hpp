@@ -20,5 +20,5 @@ public:
 
     // --- Méthodes héritées ---
     bool estVide() const override;
-    const Carte * piocher() override;
+    Carte * piocher() override;
 };

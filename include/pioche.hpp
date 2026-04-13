@@ -18,7 +18,7 @@ public:
     ~Pioche();
 
     // --- Méthodes vrituel ---
-    virtual const Carte * piocher() = 0;
+    virtual Carte * piocher() = 0;
     virtual bool estVide() const = 0;
 };
 

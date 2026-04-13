@@ -12,32 +12,25 @@ using namespace std;
  * - wagonRestants : 45 wagons au départ (nombre standard du jeu)
  * - couleur : chaîne vide à initialiser
  */
-Joueur::Joueur(PiocheWagon& piocheWagon, PiocheTicket& piocheTicket, couleur_e c)
+Joueur::Joueur(PiocheWagon &piocheWagon, PiocheTicket& piocheTicket, couleur_e c)
 {
-    main = vector<CarteWagon>();
-
     for (int i = 0; i < 4; i++) {
         // Piocher une carte wagon et la convertir en CarteWagon
-        auto carte = piocheWagon.piocher(); // Récupère unique_ptr<Carte>
-        CarteWagon* carteWagon = dynamic_cast<CarteWagon*>(carte.get());
-            main.push_back(*carteWagon); // Déréférencer et ajouter
+        Carte * carte = piocheWagon.piocher(); 
+        CarteWagon* carteWagon = dynamic_cast<CarteWagon*>(carte);
+        main_.push_back(carteWagon);
     }
-
-
-    tickets = vector<CarteTicket>();
 
     for (int i = 0; i < 1; i++) {
         // Piocher une carte ticket et la convertir en CarteTicket
-        auto carte_ = piocheTicket.piocher(); // Récupère unique_ptr<Carte>
-        CarteTicket* carteTicket = dynamic_cast<CarteTicket*>(carte_.get());
-            tickets.push_back(*carteTicket); // Déréférencer et ajouter
+        Carte * carte = piocheTicket.piocher(); // Récupère unique_ptr<Carte>
+        CarteTicket* carteTicket = dynamic_cast<CarteTicket*>(carte);
+        tickets_.push_back(carteTicket); // Déréférencer et ajouter
     }
 
-    ticketGagnes = 0;
-
-    wagonRestants = 45;
-
-    couleur = c;
+    nbTicketGagnes_ = 0;
+    nbWagonRestants_ = 45;
+    couleur_ = c;
 }
 
 /**
@@ -49,4 +42,30 @@ Joueur::~Joueur()
 {
     // Les vecteurs sont automatiquement détruits via leur destructeur
     // Pas de pointeurs à libérer manuellement
+}
+
+const vector<CarteWagon*>& Joueur::get_main() const{
+    return main_;
+}
+
+const vector<CarteTicket*>& Joueur::get_tickets() const{
+    return tickets_;
+}
+const int Joueur::get_ticketGagnes() const{
+    return nbTicketGagnes_;
+}
+const int Joueur::get_wagonRestants() const{
+    return nbWagonRestants_;
+}
+const couleur_e Joueur::getCouleur(){
+        return couleur_;
+}
+
+void Joueur::set_ticketGagnes(int newTicketGagnes){
+    nbTicketGagnes_ = newTicketGagnes;
+}
+
+
+void Joueur::utiliserWagon(){
+    nbWagonRestants_--;
 }

@@ -60,7 +60,7 @@ void Affichage::statusLiaison(const Liaison &l1, const Liaison &l2){
                             couleurTerminal_n::GRIS+"[vide]")
          << couleurTerminal_n::RESET << couleurTerminal_n::GRIS << " / ";
     // Status Voie 2
-    cout << (l1.isOccupe() ? couleurTerminal_n::VERT+"["+convertCouleur(l1.getOccupant()->getCouleur())+"]" : 
+    cout << (l2.isOccupe() ? couleurTerminal_n::VERT+"["+convertCouleur(l2.getOccupant()->getCouleur())+"]" : 
                             couleurTerminal_n::GRIS+"[vide]")
          << couleurTerminal_n::RESET;
 }

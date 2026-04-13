@@ -13,21 +13,29 @@ class Joueur
 {
 private:
     // --- Attributs privés ---
-    std::vector<CarteWagon*> main;
-    std::vector<CarteTicket*> tickets;
-    int nbticketGagnes;
-    int wagonRestants;
-    couleur_e couleur;
+    std::vector<CarteWagon*> main_;
+    std::vector<CarteTicket*> tickets_;
+    int nbTicketGagnes_;
+    int nbWagonRestants_;
+    couleur_e couleur_;
 
 public:
     // --- Constructeur ---
-    Joueur(PiocheWagon& piochWeagon, PiocheTicket& piocheTicket, couleur_e c);
+    Joueur(PiocheWagon &piocheWagon, PiocheTicket& piocheTicket, couleur_e c);
     // --- Destructeur ---
     ~Joueur();
 
+    // --- Acesseur ---
+    const vector<CarteWagon*>& get_main() const;//test
+    const vector<CarteTicket*>& get_tickets() const;//test
+    const int get_ticketGagnes() const;
+    const int get_wagonRestants() const;
+    const couleur_e getCouleur();
 
-    couleur_e getCouleur(){
-        return couleur;
-    }
+    // --- Setteur ---
+    void set_ticketGagnes(int newTicketGagnes);
+
+    // --- Méthodes publique ---
+    void utiliserWagon();
 };
 

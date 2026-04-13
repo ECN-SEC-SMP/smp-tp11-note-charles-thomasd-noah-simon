@@ -22,7 +22,7 @@ PiocheTicket::~PiocheTicket() {
 }
 
 
-const Carte * PiocheTicket::piocher() {
+Carte * PiocheTicket::piocher() {
     if (pioche_.empty()) {
         return nullptr; // plus de carte à piocher
     }

@@ -71,7 +71,7 @@ vector<Liaison> Reader::readMaps(string path) {
 
 
 PiocheTicket Reader::readTickets(string path) {
-    vector<CarteTicket> csvParser;
+    vector<CarteTicket*> csvParser;
     string line, csvWordData;
 
     ifstream file(path); //Ouvre le fichier
@@ -99,9 +99,9 @@ PiocheTicket Reader::readTickets(string path) {
         Ville * vA = getVillePtr(piocheCar[1],region_e::DEFAULT_REGION);
         Ville * vB = getVillePtr(piocheCar[2],region_e::DEFAULT_REGION);
 
-        //Création de la liaison
-        CarteTicket ticket(vA, vB);
-        csvParser.push_back(ticket); // liaison ajoute dans le vecteur
+        //Création de la carte
+        CarteTicket * t = new CarteTicket(vA, vB);
+        csvParser.push_back(t); // liaison ajoute dans le vecteur
     }
     return PiocheTicket(csvParser);
 }

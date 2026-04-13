@@ -13,7 +13,7 @@ public:
     // --- Constructeur ---
     Carte();
     // --- Destructeur ---
-    ~Carte(); 
+    virtual ~Carte() = default;
 };
 
 #endif // --- CARTE_H ---

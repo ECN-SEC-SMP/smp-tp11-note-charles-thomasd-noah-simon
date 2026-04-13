@@ -37,7 +37,7 @@ PiocheWagon::~PiocheWagon(){
 };
 
 
-const Carte * PiocheWagon::piocher() {
+Carte * PiocheWagon::piocher() {
     if (pioche_.empty()) {
         if (defausse_.empty()){
             return nullptr; // on ne retourne pas de carte

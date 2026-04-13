@@ -57,6 +57,6 @@ public:
      * 
      * @return carteWagon 
      */
-    const Carte * piocher() override;
+    Carte * piocher() override;
 };
 
