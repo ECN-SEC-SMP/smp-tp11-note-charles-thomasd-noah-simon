@@ -7,10 +7,10 @@
  * - les Cartes wagon
  */
 enum class couleur_e{
-    JAUNE,
-    BLANC,
-    VERT, 
-    NOIR, 
+    JAUNE = 0,
+    BLANC = 1,
+    VERT  = 2, 
+    NOIR  = 3, 
     BLEU, 
     ROUGE,
     MULTICOLORE,

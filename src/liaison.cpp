@@ -14,7 +14,7 @@ const array<Ville*,2> & Liaison::getVilles() const {
      return this->villes;
 }
 
-int Liaison::getNbRails() const { 
+unsigned Liaison::getNbRails() const { 
     return this->nbRails;
 }
 

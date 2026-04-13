@@ -19,6 +19,7 @@ public:
     ~PiocheTicket();
 
     // --- Méthodes héritées ---
+    void ajouterTicket(CarteTicket* c);
     bool estVide() const override;
     Carte * piocher() override;
 };

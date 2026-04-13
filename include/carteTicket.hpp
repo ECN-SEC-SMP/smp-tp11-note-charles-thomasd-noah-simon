@@ -46,4 +46,6 @@ public:
      */
     void setValider();
 
+    bool isValider() const;
+
 };

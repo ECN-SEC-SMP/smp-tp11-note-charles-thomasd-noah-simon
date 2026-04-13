@@ -15,7 +15,7 @@ private:
     array<Ville*,2> villes;
     couleur_e couleurRail;
     Joueur* occupant;
-    int nbRails;
+    unsigned int nbRails;
 
 public:
     // --- constructeurs ---
@@ -26,7 +26,7 @@ public:
 
     // --- accesseurs ---
     const array<Ville*,2> &getVilles() const;
-    int getNbRails() const;
+    unsigned int getNbRails() const;
     couleur_e getCouleur() const;
     Joueur* getOccupant() const;
     

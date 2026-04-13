@@ -76,37 +76,47 @@ private:
     void plateau(Plateau &p);
 
     /**
-     * @brief Affiche la main du joueur
-     * 
-     * @return true 
-     * @return false 
+     * @brief affiche le plateau mis  jour
+     * @param p 
      */
-    void mainJoueur(Joueur j);
-
-    /**
-     * @brief Affiche les tickets du joueurs
-     * 
-     * @return true 
-     * @return false 
-     */
-    void tickets(Joueur j);
-
-    /**
-     * @brief Affiche le nombre de point du joueur
-     * 
-     * @return true 
-     * @return false 
-     */
-    void score(Joueur j);
+    void nbJoueursPartie();
 
 
-    /**
-     * @brief Affiche le nombre de wagon restant du joueur
-     * 
-     * @return true 
-     * @return false 
-     */
-    void wagonRestant(Joueur j);
+    void partieInitialise(unsigned int nbJ);
+    void choixActionJoueur(const Joueur &j);
+
+    // /**
+    //  * @brief Affiche la main du joueur
+    //  * 
+    //  * @return true 
+    //  * @return false 
+    //  */
+    // void mainJoueur(const Joueur &j);
+
+    // /**
+    //  * @brief Affiche les tickets du joueurs
+    //  * 
+    //  * @return true 
+    //  * @return false 
+    //  */
+    // void tickets(const Joueur &j);
+
+    // /**
+    //  * @brief Affiche le nombre de point du joueur
+    //  * 
+    //  * @return true 
+    //  * @return false 
+    //  */
+    // void score(const Joueur &j);
+
+
+    // /**
+    //  * @brief Affiche le nombre de wagon restant du joueur
+    //  * 
+    //  * @return true 
+    //  * @return false 
+    //  */
+    // void wagonRestant(const Joueur &j);
 };
 
 #endif // --- PLATEAU_H ---

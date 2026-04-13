@@ -11,9 +11,9 @@ using namespace std;
 //Declarations:
 void testPlateau();
 
-int main(int argc, char const *argv[])
+int main()
 {
-    Partie p("./data/map.csv", "./data/tickets.csv");
+    Partie p("../data/map.csv", "../data/tickets.csv");
     testPlateau();
     return 0;
 }

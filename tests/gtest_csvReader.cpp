@@ -9,7 +9,7 @@
 
 TEST(ReaderMapTest, NombreLiaisons) {
     Reader r;
-    auto liaisons = r.readMaps("map.csv");
+    auto liaisons = r.readMaps("data/map.csv");
     EXPECT_EQ(liaisons.size(), 39);
 }
 
@@ -21,7 +21,7 @@ TEST(ReaderMapTest, FichierInexistant) {
 
 TEST(ReaderMapTest, PremiereLiaisonVilles) {
     Reader r;
-    auto liaisons = r.readMaps("map.csv");
+    auto liaisons = r.readMaps("data/map.csv");
     const auto villes = liaisons[0].getVilles();
     EXPECT_EQ(villes[0]->getNom(), "Seattle");
     EXPECT_EQ(villes[1]->getNom(), "Calgary");
@@ -29,19 +29,19 @@ TEST(ReaderMapTest, PremiereLiaisonVilles) {
 
 TEST(ReaderMapTest, PremiereLiaisonCouleur) {
     Reader r;
-    auto liaisons = r.readMaps("map.csv");
+    auto liaisons = r.readMaps("data/map.csv");
     EXPECT_EQ(liaisons[0].getCouleur(), couleur_e::NOIR);
 }
 
 TEST(ReaderMapTest, PremiereLiaisonLongueur) {
     Reader r;
-    auto liaisons = r.readMaps("map.csv");
+    auto liaisons = r.readMaps("data/map.csv");
     EXPECT_EQ(liaisons[0].getNbRails(), 4);
 }
 
 TEST(ReaderMapTest, PremiereLiaisonRegion) {
     Reader r;
-    auto liaisons = r.readMaps("map.csv");
+    auto liaisons = r.readMaps("data/map.csv");
     const auto villes = liaisons[0].getVilles();
     EXPECT_EQ(villes[0]->getRegion(), region_e::OUEST);
     EXPECT_EQ(villes[1]->getRegion(), region_e::CENTRE_OUEST);
@@ -50,7 +50,7 @@ TEST(ReaderMapTest, PremiereLiaisonRegion) {
 TEST(ReaderMapTest, MemePointeurPourMemeville) {
     // Seattle apparait dans plusieurs liaisons, doit pointer au même objet
     Reader r;
-    auto liaisons = r.readMaps("map.csv");
+    auto liaisons = r.readMaps("data/map.csv");
     const Ville* seattle0 = liaisons[0].getVilles()[0]; // Seattle-Calgary ligne 1
     const Ville* seattle1 = liaisons[1].getVilles()[0]; // Seattle-Calgary ligne 2
     const Ville* seattle2 = liaisons[2].getVilles()[0]; // Seattle-Helena
@@ -70,31 +70,65 @@ TEST(ReaderMapTest, CouleurInconnueSiInvalide) {
 TEST(ReaderTicketTest, FichierInexistant) {
     Reader r;
     PiocheTicket p = r.readTickets("inexistant.csv");
-    //EXPECT_EQ(p.getNbCartes(), 0);
+    EXPECT_TRUE(p.estVide());
 }
 
 TEST(ReaderTicketTest, NombreTickets) {
     Reader r;
-    PiocheTicket p = r.readTickets("ticket.csv");
-    //EXPECT_GT(p.getNbCartes(), 0);
+    PiocheTicket p = r.readTickets("data/ticket.csv");
+
+    int nbTickets = 0;
+    while (!p.estVide()) {
+        Carte* c = p.piocher();
+        delete c;
+        ++nbTickets;
+    }
+
+    EXPECT_EQ(nbTickets, 32);
 }
 
 TEST(ReaderTicketTest, PremierTicketVilles) {
     Reader r;
-    PiocheTicket p = r.readTickets("ticket.csv");
-    const auto carte = p.piocher();
-    //EXPECT_EQ(carte.getVilleA()->getNom(), "Seattle");
-    //EXPECT_EQ(carte.getVilleB()->getNom(), "Los Angeles");
+    PiocheTicket p = r.readTickets("data/ticket.csv");
+    Carte* c = p.piocher();
+    ASSERT_NE(c, nullptr);
+
+    auto* ticket = dynamic_cast<CarteTicket*>(c);
+    ASSERT_NE(ticket, nullptr);
+
+    const auto villes = ticket->getVilles();
+    EXPECT_EQ(villes[0]->getNom(), "Seattle");
+    EXPECT_EQ(villes[1]->getNom(), "New York");
+
+    delete c;
 }
 
 TEST(ReaderTicketTest, MemePointeurVillePartageeAvecMap) {
     // Si readMaps est appelé avant readTickets sur le même Reader,
     // les pointeurs de villes communes doivent être identiques
     Reader r;
-    auto liaisons = r.readMaps("map.csv");
-    PiocheTicket p = r.readTickets("ticket.csv");
+    auto liaisons = r.readMaps("data/map.csv");
+    PiocheTicket p = r.readTickets("data/ticket.csv");
 
     const Ville* seattleMap = liaisons[0].getVilles()[0];
-    //const Ville* seattleTicket = p.piocher().getVilleA();
-    //EXPECT_EQ(seattleMap, seattleTicket);
+    bool sharedPointerFound = false;
+
+    while (!p.estVide()) {
+        Carte* c = p.piocher();
+        auto* ticket = dynamic_cast<CarteTicket*>(c);
+        if (ticket != nullptr) {
+            const auto villes = ticket->getVilles();
+            if (villes[0]->getNom() == "Seattle") {
+                EXPECT_EQ(seattleMap, villes[0]);
+                sharedPointerFound = true;
+            }
+            if (villes[1]->getNom() == "Seattle") {
+                EXPECT_EQ(seattleMap, villes[1]);
+                sharedPointerFound = true;
+            }
+        }
+        delete c;
+    }
+
+    EXPECT_TRUE(sharedPointerFound);
 }

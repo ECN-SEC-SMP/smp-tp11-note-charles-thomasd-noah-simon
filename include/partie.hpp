@@ -1,8 +1,6 @@
-#include <stdlib.h>
 #include <vector>
 
-using namespace std;
-
+#include "affichage.hpp"
 #include "plateau.hpp"
 #include "joueur.hpp"
 #include "pioche.hpp"
@@ -14,13 +12,25 @@ using namespace std;
 class Partie
 {
 private:
-    Plateau plat;
-    vector<Joueur> joueurs;
-    PiocheTicket piocheTicket;
-    PiocheWagon piocheWagon;
+    Affichage display;
+    Plateau plat_;
+    std::vector<Joueur*> joueurs_;
+    PiocheTicket piocheTicket_;
+    PiocheWagon piocheWagon_;
+
+    void choixNbJoueur();
+    void distribuerCarte();
+    unsigned int choixTourJoueur();
+    void distribuerCarteWagon(Joueur * j, unsigned int nb = 1);
+    void distribuerCarteTicket(Joueur * j, unsigned int nb = 1);
+    void passerTour(Joueur * j);
+
 public:
     Partie();
     Partie(string mapCVS, string ticketCSV);
+    
+    void initialiser();
+    void lancer();
     
     ~Partie();
 };

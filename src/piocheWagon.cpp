@@ -9,7 +9,7 @@ using namespace std;
 
 mt19937 rng(random_device{}());
 
-/******* Private function *******/
+// --- Méthode Privées ---
 void PiocheWagon::genWagons() {
     pioche_.clear(); // reset le vecteur 
     for (int i = 0; i < 6; ++i) {
@@ -23,11 +23,10 @@ void PiocheWagon::genWagons() {
     // Mélange la pioche
     shuffle(pioche_.begin(), pioche_.end(), rng);
 }
-/********************************/
 
 
-/******* Public function *******/
 
+// --- Lifecycle (Constructeurs / Destructeur) ---
 PiocheWagon::PiocheWagon() {
     // Initialisation de la pioche avec des cartes wagon 
     genWagons();
@@ -36,7 +35,7 @@ PiocheWagon::PiocheWagon() {
 PiocheWagon::~PiocheWagon(){
 };
 
-
+// --- Méthode Publiques ---
 Carte * PiocheWagon::piocher() {
     if (pioche_.empty()) {
         if (defausse_.empty()){
@@ -68,7 +67,4 @@ void PiocheWagon::resetPioche() {
 bool PiocheWagon::estVide() const {
     return pioche_.empty();
 }   
-
-
-/********************************/
 

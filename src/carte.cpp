@@ -4,7 +4,4 @@ Carte::Carte() {
 
 }
 
-Carte::~Carte() {
-
-}
 

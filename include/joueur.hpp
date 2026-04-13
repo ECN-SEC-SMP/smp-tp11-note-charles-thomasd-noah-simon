@@ -1,7 +1,7 @@
 #pragma once
-#include <stdlib.h>
+#include <array>
 #include <vector>
-#include<string>
+#include <string>
 
 #include "carteWagon.hpp"
 #include "carteTicket.hpp"
@@ -21,21 +21,34 @@ private:
 
 public:
     // --- Constructeur ---
-    Joueur(PiocheWagon &piocheWagon, PiocheTicket& piocheTicket, couleur_e c);
+    Joueur(couleur_e c);
     // --- Destructeur ---
+    /**
+     * @brief Destructeur du Joueur
+     * Libère les ressources du joueur
+     * Les vecteurs (main et tickets) sont automatiquement nettoyés par leur destructeur
+     */
     ~Joueur();
 
     // --- Acesseur ---
-    const vector<CarteWagon*>& get_main() const;//test
-    const vector<CarteTicket*>& get_tickets() const;//test
-    const int get_ticketGagnes() const;
-    const int get_wagonRestants() const;
-    const couleur_e getCouleur();
+    const std::vector<CarteWagon*>& get_main() const;//test
+    const std::vector<CarteTicket*>& get_tickets() const;//test
+    int get_ticketGagnes() const;
+    int get_wagonRestants() const;
+    couleur_e getCouleur() const;
 
+    
     // --- Setteur ---
     void set_ticketGagnes(int newTicketGagnes);
 
     // --- Méthodes publique ---
-    void utiliserWagon();
+    void utiliserWagon(int nb);
+    void piocherCarteWagon(CarteWagon *c);
+
+    void piocherCarteTicket(CarteTicket *c);
+    std::array<CarteTicket*,2> defausser2Ticket();
+
+
+
 };
 

@@ -12,6 +12,7 @@ region_e convertRegion(string c){
 }
 
 
+// --- Lifecycle (Constructeurs / Destructeur) ---
 Ville::Ville(){
 }
 
@@ -27,6 +28,7 @@ Ville::Ville(string nvNom,region_e c): nom_(nvNom), region_(c){
 Ville::~Ville(){
 }
 
+// --- Méthode Publique ---
 string Ville::getNom() const {
     return nom_;
 }

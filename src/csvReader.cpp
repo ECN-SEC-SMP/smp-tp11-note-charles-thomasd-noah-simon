@@ -46,6 +46,7 @@ vector<Liaison> Reader::readMaps(string path) {
     getline(file, line); // passe la première ligne
     while (getline(file, line)) {
         istringstream iss(line); // Séparation en ligne
+   
         //tableau contenant city_a[0],city_b[1],region_a[2],region_b[3],color[4],lenght[5]
         array<string,6> liaisonCar;
 

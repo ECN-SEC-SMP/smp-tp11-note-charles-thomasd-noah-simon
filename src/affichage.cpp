@@ -5,17 +5,10 @@
 
 using namespace std;
 
+//constante :
 static const int L = 16;
 
-
-Affichage::Affichage(){
-
-}
-
-Affichage::~Affichage(){
-    
-}
-
+// --- Méthode Privée ---
 void Affichage::region(const Ville *v){
     if (v == nullptr) {
         cout << couleurTerminal_n::ROUGE <<left << setw(L) << "error";
@@ -106,6 +99,16 @@ void Affichage::ville(const Ville *v){
              << couleurTerminal_n::RESET;
 }
 
+// --- Lifecycle (Constructeurs / Destructeur) ---
+Affichage::Affichage(){
+
+}
+
+Affichage::~Affichage(){
+    
+}
+
+// --- Méthode Publique ---
 void Affichage::plateau(Plateau &p){
     cout << couleurTerminal_n::BLANC << couleurTerminal_n::GRAS
          << "╔══════════════════════════════════════════════════════════════╗\n"
@@ -146,29 +149,47 @@ void Affichage::plateau(Plateau &p){
     }
 }
 
-void Affichage::mainJoueur(Joueur j){
-    // for(n :j.getMain()){
-    //     cout << n.  <<endl;
-    // }
+
+void Affichage::nbJoueursPartie(){
+    cout << "Entrez le nombre de joueurs (2-4) : ";
+}   
+
+void Affichage::partieInitialise(unsigned int nbJ){
+    cout << "Partie initialisée avec " << nbJ << " joueurs." << endl;
 }
 
-void Affichage::tickets(Joueur j){
-    // for(n :j.getTickets()){
-    //     cout << n.   <<endl;
-    // }
+
+void Affichage::choixActionJoueur(const Joueur &j){
+    cout << "Joueur" << convertCouleur(j.getCouleur()) << "Choissisez une action : " << endl
+         << "1. Piocher 2 cartes" << endl
+         << "2. Acquérir une liaisons" << endl
+         << "3. Passer son tour et deffauser 2 ticker" << endl;
+    
 }
 
-void Affichage::score(Joueur j){
-    // for(n :j.getTickets()){
-    //     cout << n.   <<endl;
-    // }
-}
+// void Affichage::mainJoueur(Joueur j){
+//     // for(n :j.getMain()){
+//     //     cout << n.  <<endl;
+//     // }
+// }
 
-void Affichage::wagonRestant(Joueur j){
-    // for(n :j.getTickets()){
-    //     cout << n.   <<endl;
-    // }
-}
+// void Affichage::tickets(Joueur j){
+//     // for(n :j.getTickets()){
+//     //     cout << n.   <<endl;
+//     // }
+// }
+
+// void Affichage::score(Joueur j){
+//     // for(n :j.getTickets()){
+//     //     cout << n.   <<endl;
+//     // }
+// }
+
+// void Affichage::wagonRestant(Joueur j){
+//     // for(n :j.getTickets()){
+//     //     cout << n.   <<endl;
+//     // }
+// }
 
 
 

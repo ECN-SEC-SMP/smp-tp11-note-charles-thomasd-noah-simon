@@ -27,3 +27,7 @@ array<Ville*,CarteTicket::nbVilles_> CarteTicket::getVilles() const{
 void CarteTicket::setValider(){
     valider_ = true;
 }
+
+bool CarteTicket::isValider() const{
+    return valider_;
+}
