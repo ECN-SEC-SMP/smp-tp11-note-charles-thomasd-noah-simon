@@ -24,6 +24,10 @@ const vector<Liaison> & Plateau::getLiaisons() const{
     return liaisons_;
 }
 
+std::vector<Liaison> & Plateau::getLiaisons() {
+    return liaisons_;
+}
+
 
 bool Plateau::isLink(const array<const Ville*,2> &villes, const Joueur *j) const {
     return (!isLink(*villes[0], *villes[1], j));
@@ -87,6 +91,17 @@ bool Plateau::isLink(const Ville &vA, const Ville &vB, const Joueur *j) const {
     return false;
 }
 
+
+vector<unsigned int> Plateau::getIndexMap() const {
+    vector<unsigned int> indexMap;
+    for (unsigned int i = 0; i < liaisons_.size(); i++) {
+        indexMap.push_back(i);
+        if (i + 1 < liaisons_.size() && liaisons_[i] == liaisons_[i + 1]) {
+            i++; // skip la liaison double
+        }
+    }
+    return indexMap;
+}
 
 bool Plateau::putWagon(Liaison *l, Joueur &j){
     if (l->isOccupe() ||(l == nullptr)) {

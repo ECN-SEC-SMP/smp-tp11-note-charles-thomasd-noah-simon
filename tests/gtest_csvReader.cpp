@@ -60,7 +60,7 @@ TEST(ReaderMapTest, MemePointeurPourMemeville) {
 
 TEST(ReaderMapTest, CouleurInconnueSiInvalide) {
     // On teste colorConverteur indirectement via une couleur non mappée
-    EXPECT_EQ(colorConverteur("purple"), couleur_e::COULEUR_INCONNUE);
+    EXPECT_EQ(toCouleur_e("purple"), couleur_e::COULEUR_INCONNUE);
 }
 
 // =====================

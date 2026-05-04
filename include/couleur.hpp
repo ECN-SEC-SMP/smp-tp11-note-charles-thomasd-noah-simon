@@ -23,7 +23,7 @@ enum class couleur_e{
  * @param c 
  * @return couleur_e 
  */
-inline couleur_e colorConverteur(std::string c){
+inline couleur_e toCouleur_e(std::string c){
     if (c == "yellow") return couleur_e::JAUNE;
     if (c == "white")  return couleur_e::BLANC;
     if (c == "green")  return couleur_e::VERT;
@@ -31,6 +31,25 @@ inline couleur_e colorConverteur(std::string c){
     if (c == "blue")   return couleur_e::BLEU;
     if (c == "red")    return couleur_e::ROUGE;
     return couleur_e::COULEUR_INCONNUE;
+}
+
+
+
+
+/**
+ * @brief Convertit l'énumération couleur_e en chaîne de caractères (string).
+ */
+inline const std::string toString(const couleur_e c) {
+    switch (c){
+        case couleur_e::JAUNE:       return "Jaune";
+        case couleur_e::BLANC:       return "Blanc";
+        case couleur_e::VERT:        return "Vert";
+        case couleur_e::NOIR:        return "Noir";
+        case couleur_e::BLEU:        return "Bleu";
+        case couleur_e::ROUGE:       return "Rouge";
+        case couleur_e::MULTICOLORE: return "RGB";
+        default: return "unknown";
+    }
 }
 
 namespace couleurTerminal_n{
@@ -53,7 +72,7 @@ namespace couleurTerminal_n{
 }
 
 
-inline const std::string  convertCouleur(couleur_e c){
+inline const std::string  toCouleurTerminal_n(couleur_e c){
     if (c == couleur_e::JAUNE) return couleurTerminal_n::JAUNE;
     if (c == couleur_e::BLANC) return couleurTerminal_n::BLANC;
     if (c == couleur_e::VERT) return couleurTerminal_n::VERT;
@@ -62,3 +81,4 @@ inline const std::string  convertCouleur(couleur_e c){
     if (c == couleur_e::ROUGE) return couleurTerminal_n::ROUGE;
     return "";
 }
+

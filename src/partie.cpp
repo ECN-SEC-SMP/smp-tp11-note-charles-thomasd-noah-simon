@@ -6,21 +6,18 @@
 
 // --- Méthode Privées ---
 void Partie::choixNbJoueur(){
-    unsigned int nbJoueur = 0; 
-    while (nbJoueur > 2 && nbJoueur < 4)
-    {
-        display.nbJoueursPartie();
-        cin >> nbJoueur;
-    }
+    display.nbJoueursPartie();
+    unsigned int nbJoueur = in.entier(2,4); 
     
-    //Création des joueurs avec couleur basic
+    //Création des joueurs avec des couleurs basic
+    //ajouter choix de couleur ?
     for (unsigned int i = 0; i < nbJoueur; i++) {
         //les joueurs pioches leur carte en même temps
         joueurs_.push_back(new Joueur(static_cast<couleur_e>(i)));
     }
 }
 
-void Partie::distribuerCarte(){
+void Partie::distribuerCartes(){
     //Pour tous les joueurs
     for(const auto &j : joueurs_){
         if (j != nullptr)
@@ -34,21 +31,13 @@ void Partie::distribuerCarte(){
     }
 }
 
-unsigned int Partie::choixTourJoueur(){
-    unsigned int actionJoueur = 0;
-    while (actionJoueur > 0 && actionJoueur < 4)
-    {
-        cin >> actionJoueur;
-    }
-    return actionJoueur;
-}
 
 
 void Partie::distribuerCarteWagon(Joueur * j, unsigned int nb){
     if ( j == nullptr) return;
 
     for (unsigned int i = 0; i < nb; i++) {
-        Carte * carte = piocheTicket_.piocher(); // Récupère unique_ptr<Carte>
+        Carte * carte = piocheWagon_.piocher(); // Récupère unique_ptr<Carte>
         j->piocherCarteWagon(dynamic_cast<CarteWagon*>(carte));
     }
 }
@@ -62,6 +51,51 @@ void Partie::distribuerCarteTicket(Joueur * j, unsigned int nb){
         j->piocherCarteTicket(dynamic_cast<CarteTicket*>(carte));
     }
 }
+
+
+void Partie::poserWagon(Joueur* j) {
+    if (j == nullptr) return;
+
+    auto& liaisons = plat_.getLiaisons();
+    auto indexMap = plat_.getIndexMap(); 
+
+    display.plateau(plat_);
+    unsigned int choix = in.entier(1, indexMap.size()) - 1;
+    unsigned int indexReel = indexMap[choix];
+
+    // Liaison double ?
+    display.choixLiaisonDouble(*j);
+    if (indexReel + 1 < liaisons.size() && liaisons[indexReel] == liaisons[indexReel + 1]) {
+        unsigned int voie = in.entier(1,2);
+        plat_.putWagon(&liaisons[indexReel + (voie - 1)], *j);
+    } else {
+        plat_.putWagon(&liaisons[indexReel], *j);
+    }
+}
+
+
+void Partie::tourJoueur(Joueur *j){
+    if (j == nullptr) return;
+    display.choixTourJoueur(*j);
+        switch (in.entier(1,3))
+        {
+            case 1 :
+                distribuerCarteWagon(j,2);
+            break;
+
+            case 2 :
+                poserWagon(j);
+            break;
+
+            case 3 :
+                passerTour(j);
+            break;
+        
+            default:
+            break;
+        }
+}
+
 
 void Partie::passerTour(Joueur * j){
     if ( j == nullptr) return;
@@ -97,39 +131,23 @@ Partie::Partie(string mapCVS, string ticketCSV){
 }
 
 Partie::~Partie() {
-    // Les objets seront automatiquement nettoyés
-    // (les vecteurs seront vidés automatiquement)
+    for(const auto &j : joueurs_){
+        delete j;
+    }
 }
 
 // --- Méthode Publique ---
 void Partie::initialiser(){
    //choix du nombre de joueurs
    choixNbJoueur();
-   distribuerCarte();
+   distribuerCartes();
 
    display.partieInitialise(joueurs_.size());
 }
 
 void Partie::lancer(){
     for(auto &j : joueurs_){
-        display.choixActionJoueur(*j);
-        switch (choixTourJoueur())
-        {
-            case 1 :
-                distribuerCarteWagon(j,2);
-            break;
-
-            case 2 :
-                /* code */
-            break;
-
-            case 3 :
-                passerTour(j);
-            break;
-        
-            default:
-            break;
-        }
+        tourJoueur(j);
     } 
 }
 

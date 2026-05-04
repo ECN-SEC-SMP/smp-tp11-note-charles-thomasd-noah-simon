@@ -6,7 +6,7 @@
 using namespace std;
 
 //constante :
-static const int L = 16;
+static const int L = 18;
 
 // --- Méthode Privée ---
 void Affichage::region(const Ville *v){
@@ -42,18 +42,18 @@ void Affichage::region(region_e cote){
 }
 
 void Affichage::statusLiaison(const Liaison &l){
-    cout << (l.isOccupe() ? couleurTerminal_n::VERT+"["+convertCouleur(l.getOccupant()->getCouleur())+"]" : 
+    cout << (l.isOccupe() ? couleurTerminal_n::VERT+"["+toCouleurTerminal_n(l.getOccupant()->getCouleur())+"]" : 
                             couleurTerminal_n::GRIS+"[vide]")
          << couleurTerminal_n::RESET;
 }
 
 void Affichage::statusLiaison(const Liaison &l1, const Liaison &l2){
     // Status Voie 1
-    cout << (l1.isOccupe() ? couleurTerminal_n::VERT+"["+convertCouleur(l1.getOccupant()->getCouleur())+"]" : 
+    cout << (l1.isOccupe() ? couleurTerminal_n::VERT+"["+toCouleurTerminal_n(l1.getOccupant()->getCouleur())+"]" : 
                             couleurTerminal_n::GRIS+"[vide]")
          << couleurTerminal_n::RESET << couleurTerminal_n::GRIS << " / ";
     // Status Voie 2
-    cout << (l2.isOccupe() ? couleurTerminal_n::VERT+"["+convertCouleur(l2.getOccupant()->getCouleur())+"]" : 
+    cout << (l2.isOccupe() ? couleurTerminal_n::VERT+"["+toCouleurTerminal_n(l2.getOccupant()->getCouleur())+"]" : 
                             couleurTerminal_n::GRIS+"[vide]")
          << couleurTerminal_n::RESET;
 }
@@ -62,7 +62,7 @@ void Affichage::liaison(const Liaison &l1){
     const unsigned int nbRails = l1.getNbRails();
     string railsStr = string(nbRails, '=') + "(" + to_string(nbRails) + ")" + string(nbRails, '=');
 
-    cout << convertCouleur(l1.getCouleur()) 
+    cout << toCouleurTerminal_n(l1.getCouleur()) 
          << left << setw(L) << railsStr
          //reset
          << couleurTerminal_n::RESET;
@@ -73,12 +73,12 @@ void Affichage::liaison(const Liaison &l1, const Liaison &l2){
     const array<string,2> railsStrTab = {string(nbRailsTab[0]/2, '=') + "(" + to_string(nbRailsTab[0]) + ")" + string(nbRailsTab[0]/2, '='),
                                          string(nbRailsTab[1]/2, '=') + "(" + to_string(nbRailsTab[1]) + ")" + string(nbRailsTab[1]/2, '=')};
      //liaisons 1 :
-     cout << convertCouleur(l1.getCouleur()) 
+     cout << toCouleurTerminal_n(l1.getCouleur()) 
           << railsStrTab[0]
           // separation / :
           << couleurTerminal_n::RESET << couleurTerminal_n::GRIS << " / "
           //Liaison 2 :
-          << couleurTerminal_n::RESET << convertCouleur(l2.getCouleur()) 
+          << couleurTerminal_n::RESET << toCouleurTerminal_n(l2.getCouleur()) 
           << railsStrTab[1]
           //reset de la couleur
          << couleurTerminal_n::RESET;
@@ -109,22 +109,29 @@ Affichage::~Affichage(){
 }
 
 // --- Méthode Publique ---
-void Affichage::plateau(Plateau &p){
+void Affichage::plateau(const Plateau &p){
     cout << couleurTerminal_n::BLANC << couleurTerminal_n::GRAS
          << "╔══════════════════════════════════════════════════════════════╗\n"
          << "║          LES AVENTURIERS DU RAIL — État du plateau           ║\n"
          << "╚══════════════════════════════════════════════════════════════╝\n"
          << couleurTerminal_n::RESET;
     //copie par adresse du vecteur liaisons
-    auto liaisons = p.getLiaisons();
+    const auto liaisons = p.getLiaisons();
+    unsigned int cptNumero = 0; 
+
+    if (liaisons.empty()) return;
 
     region(region_e::OUEST);
     for (unsigned int i = 0; i < liaisons.size() - 1; ++i) {
         const auto& n = liaisons[i];
         const auto& nextN = liaisons[i + 1]; 
+        cptNumero++;
 
         //On sauvegarde une fois pour pas appeler plusieurs fois
         const auto villesTab = n.getVilles();
+
+        //Affiche le Numéro de sélection
+        cout << "[" << cptNumero << "]";
 
         //Afficher Ville 1 :
         ville(villesTab[0]);
@@ -144,6 +151,7 @@ void Affichage::plateau(Plateau &p){
             //status double :
             statusLiaison(n,nextN);
             i++; //skip la prochaine liaison du vecteur
+            if (i >= liaisons.size() - 1) break; // empèche de dépasser la taille maxium de liaisons
         }  
         cout << endl; // retour à la ligne
     }
@@ -159,13 +167,32 @@ void Affichage::partieInitialise(unsigned int nbJ){
 }
 
 
-void Affichage::choixActionJoueur(const Joueur &j){
-    cout << "Joueur" << convertCouleur(j.getCouleur()) << "Choissisez une action : " << endl
+void Affichage::choixTourJoueur(const Joueur &j){
+    const couleur_e c = j.getCouleur();
+    cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
+         << couleurTerminal_n::RESET  << " " << "Choissisez une action : " << endl
          << "1. Piocher 2 cartes" << endl
          << "2. Acquérir une liaisons" << endl
          << "3. Passer son tour et deffauser 2 ticker" << endl;
     
 }
+
+
+void Affichage::choixLiaisonJoueur(const Joueur &j){
+    const couleur_e c = j.getCouleur();
+    cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
+         << couleurTerminal_n::RESET  << " " << "Choissisez une Liaison à aquérire. " << endl;
+}
+
+
+void Affichage::choixLiaisonDouble(const Joueur &j){
+    const couleur_e c = j.getCouleur();
+    cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
+         << couleurTerminal_n::RESET  << " " << "Choissisez une liaison : " << endl
+         << "1. L1" << endl
+         << "2. L2" << endl;
+}
+
 
 // void Affichage::mainJoueur(Joueur j){
 //     // for(n :j.getMain()){

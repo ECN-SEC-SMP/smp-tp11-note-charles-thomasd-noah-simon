@@ -7,23 +7,26 @@
 #include "piocheTicket.hpp"
 #include "piocheWagon.hpp"
 #include "csvReader.hpp"
+#include "input.hpp"
 
 
 class Partie
 {
 private:
     Affichage display;
+    Input in;
     Plateau plat_;
     std::vector<Joueur*> joueurs_;
     PiocheTicket piocheTicket_;
     PiocheWagon piocheWagon_;
 
     void choixNbJoueur();
-    void distribuerCarte();
-    unsigned int choixTourJoueur();
+    void distribuerCartes();
+    void tourJoueur(Joueur * j);
     void distribuerCarteWagon(Joueur * j, unsigned int nb = 1);
     void distribuerCarteTicket(Joueur * j, unsigned int nb = 1);
     void passerTour(Joueur * j);
+    void poserWagon(Joueur * j);
 
 public:
     Partie();

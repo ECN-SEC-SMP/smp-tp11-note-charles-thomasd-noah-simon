@@ -23,9 +23,9 @@ Reader::Reader(){
 }
 
 Reader::~Reader(){
-    for(const auto &n : villeMap) {
-        delete n.second; //c++ reference map (c++11 alternative)
-    }
+    // for(const auto &n : villeMap) {
+    //     delete n.second; //c++ reference map (c++11 alternative)
+    // }
     //vide tous les élèments de la map
     villeMap.clear();
 }
@@ -59,7 +59,7 @@ vector<Liaison> Reader::readMaps(string path) {
         //Conversion
         Ville * vA = getVillePtr(liaisonCar[0],convertRegion(liaisonCar[2]));
         Ville * vB = getVillePtr(liaisonCar[1],convertRegion(liaisonCar[3]));
-        couleur_e colorLiaison = colorConverteur(liaisonCar[4]);
+        couleur_e colorLiaison = toCouleur_e(liaisonCar[4]);
         unsigned int lenghtLiaison = stoi(liaisonCar[5]);
 
         //Création de la liaison

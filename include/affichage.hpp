@@ -73,7 +73,7 @@ private:
      * @brief affiche le plateau mis  jour
      * @param p 
      */
-    void plateau(Plateau &p);
+    void plateau(const Plateau &p);
 
     /**
      * @brief affiche le plateau mis  jour
@@ -83,7 +83,11 @@ private:
 
 
     void partieInitialise(unsigned int nbJ);
-    void choixActionJoueur(const Joueur &j);
+    void choixTourJoueur(const Joueur &j);
+    void choixLiaisonJoueur(const Joueur &j);
+    void choixLiaisonDouble(const Joueur &j);
+
+
 
     // /**
     //  * @brief Affiche la main du joueur

@@ -26,7 +26,9 @@ public:
 
     // --- Accesseur : ---
     bool getLiaisonOccupe(Liaison l) const;
+    std::vector<Liaison> & getLiaisons();
     const std::vector<Liaison> & getLiaisons() const;
+    vector<unsigned int> getIndexMap() const;
 
 
 

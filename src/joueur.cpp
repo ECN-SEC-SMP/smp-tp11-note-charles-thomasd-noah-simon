@@ -67,6 +67,7 @@ array<CarteTicket*,2> Joueur::defausser2Ticket(){
             ticketTab[cpt] = tickets_[i]; //Ajoute dans le tableau 
             tickets_.erase(tickets_.begin() + i); // suprime des tickets du joueur
             cpt++;
+            i--;//Si on supprime on décrémente le vecteur est plus petit
         }
         if (cpt == 2) return ticketTab;
     }
