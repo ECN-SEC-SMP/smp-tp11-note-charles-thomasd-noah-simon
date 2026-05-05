@@ -5,11 +5,29 @@
 #include <queue>
 #include <set>
 
+void Plateau::genIndexMap(){
+    for (unsigned int i = 0; i < liaisons_.size(); i++) {
+            indexMap_.push_back(i);
+            if (i + 1 < liaisons_.size() && liaisons_[i] == liaisons_[i + 1]) {
+                i++; // skip la liaison double
+            }
+        }
+}
+
 // --- Lifecycle (Constructeurs / Destructeur) ---
 Plateau::Plateau(){
 }
 
-Plateau::Plateau(vector<Liaison> data) : liaisons_(data){
+Plateau::Plateau(vector<Liaison> data) {
+    // triage du plateau :
+    stable_sort(data.begin(), data.end(), [](const Liaison& a, const Liaison& b) {
+        return a.getVilles()[0]->getRegion() < b.getVilles()[0]->getRegion();
+    });
+    //On effecte au vecteur du plateau
+    liaisons_ = data;
+
+    // génèration de l'index APRÈS le tri
+    genIndexMap();
 }
 
 Plateau::~Plateau(){
@@ -91,16 +109,8 @@ bool Plateau::isLink(const Ville &vA, const Ville &vB, const Joueur *j) const {
     return false;
 }
 
-
-vector<unsigned int> Plateau::getIndexMap() const {
-    vector<unsigned int> indexMap;
-    for (unsigned int i = 0; i < liaisons_.size(); i++) {
-        indexMap.push_back(i);
-        if (i + 1 < liaisons_.size() && liaisons_[i] == liaisons_[i + 1]) {
-            i++; // skip la liaison double
-        }
-    }
-    return indexMap;
+const vector<unsigned int> & Plateau::getIndexMap() const {
+    return indexMap_;
 }
 
 bool Plateau::putWagon(Liaison *l, Joueur &j){

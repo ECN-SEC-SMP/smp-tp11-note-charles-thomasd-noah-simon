@@ -59,17 +59,25 @@ void Partie::poserWagon(Joueur* j) {
     auto& liaisons = plat_.getLiaisons();
     auto indexMap = plat_.getIndexMap(); 
 
+    //Affichage du plateau de jeux
     display.plateau(plat_);
+    display.choixLiaison(*j);
     unsigned int choix = in.entier(1, indexMap.size()) - 1;
     unsigned int indexReel = indexMap[choix];
 
     // Liaison double ?
-    display.choixLiaisonDouble(*j);
     if (indexReel + 1 < liaisons.size() && liaisons[indexReel] == liaisons[indexReel + 1]) {
+        display.choixLiaisonDouble(*j);
         unsigned int voie = in.entier(1,2);
-        plat_.putWagon(&liaisons[indexReel + (voie - 1)], *j);
+        if (!plat_.putWagon(&liaisons[indexReel + (voie - 1)], *j))
+        {
+           //empêcher le joueur de poser le wagon 
+        }
     } else {
-        plat_.putWagon(&liaisons[indexReel], *j);
+        if (!plat_.putWagon(&liaisons[indexReel], *j))
+        {
+            
+        }
     }
 }
 

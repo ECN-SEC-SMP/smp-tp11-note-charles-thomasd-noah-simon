@@ -14,6 +14,10 @@ class Plateau {
 private:
     // --- Attributs privés ---
     std::vector<Liaison> liaisons_;
+    std::vector<unsigned int> indexMap_;
+
+    // --- Méthode privés ---
+    void genIndexMap();
     
 public:
     // --- Constructeur par défault ---
@@ -28,7 +32,7 @@ public:
     bool getLiaisonOccupe(Liaison l) const;
     std::vector<Liaison> & getLiaisons();
     const std::vector<Liaison> & getLiaisons() const;
-    vector<unsigned int> getIndexMap() const;
+    const vector<unsigned int> & getIndexMap() const;
 
 
 

@@ -84,8 +84,9 @@ private:
 
     void partieInitialise(unsigned int nbJ);
     void choixTourJoueur(const Joueur &j);
-    void choixLiaisonJoueur(const Joueur &j);
     void choixLiaisonDouble(const Joueur &j);
+    void choixLiaison(const Joueur &j);
+
 
 
 

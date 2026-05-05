@@ -42,20 +42,21 @@ void Affichage::region(region_e cote){
 }
 
 void Affichage::statusLiaison(const Liaison &l){
-    cout << (l.isOccupe() ? couleurTerminal_n::VERT+"["+toCouleurTerminal_n(l.getOccupant()->getCouleur())+"]" : 
-                            couleurTerminal_n::GRIS+"[vide]")
-         << couleurTerminal_n::RESET;
+    if (l.isOccupe()){
+        const auto couleurOccupant = l.getOccupant()->getCouleur();
+        cout << toCouleurTerminal_n(couleurOccupant)+"["+toString(couleurOccupant)+"]";
+    } else {
+        cout << couleurTerminal_n::GRIS+"[vide]" ;
+    }
+    cout << couleurTerminal_n::RESET;
 }
 
 void Affichage::statusLiaison(const Liaison &l1, const Liaison &l2){
     // Status Voie 1
-    cout << (l1.isOccupe() ? couleurTerminal_n::VERT+"["+toCouleurTerminal_n(l1.getOccupant()->getCouleur())+"]" : 
-                            couleurTerminal_n::GRIS+"[vide]")
-         << couleurTerminal_n::RESET << couleurTerminal_n::GRIS << " / ";
+    statusLiaison(l1);
+    cout  << couleurTerminal_n::RESET << couleurTerminal_n::GRIS << " / ";
     // Status Voie 2
-    cout << (l2.isOccupe() ? couleurTerminal_n::VERT+"["+toCouleurTerminal_n(l2.getOccupant()->getCouleur())+"]" : 
-                            couleurTerminal_n::GRIS+"[vide]")
-         << couleurTerminal_n::RESET;
+    statusLiaison(l2);
 }
 
 void Affichage::liaison(const Liaison &l1){
@@ -131,7 +132,7 @@ void Affichage::plateau(const Plateau &p){
         const auto villesTab = n.getVilles();
 
         //Affiche le Numéro de sélection
-        cout << "[" << cptNumero << "]";
+        cout << "[" << setfill('0') << setw(2) << right << cptNumero << "] " << setfill(' ');
 
         //Afficher Ville 1 :
         ville(villesTab[0]);
@@ -178,17 +179,18 @@ void Affichage::choixTourJoueur(const Joueur &j){
 }
 
 
-void Affichage::choixLiaisonJoueur(const Joueur &j){
+
+void Affichage::choixLiaison(const Joueur &j){
     const couleur_e c = j.getCouleur();
     cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
-         << couleurTerminal_n::RESET  << " " << "Choissisez une Liaison à aquérire. " << endl;
+         << couleurTerminal_n::RESET  << " " << "choissisez une Liaison à aquérire. " << endl;
 }
 
 
 void Affichage::choixLiaisonDouble(const Joueur &j){
     const couleur_e c = j.getCouleur();
     cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
-         << couleurTerminal_n::RESET  << " " << "Choissisez une liaison : " << endl
+         << couleurTerminal_n::RESET  << " " << "choissisez une liaison : " << endl
          << "1. L1" << endl
          << "2. L2" << endl;
 }
