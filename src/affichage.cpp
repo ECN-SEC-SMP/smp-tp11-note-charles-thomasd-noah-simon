@@ -118,11 +118,11 @@ void Affichage::plateau(const Plateau &p){
          << couleurTerminal_n::RESET;
     //copie par adresse du vecteur liaisons
     const auto liaisons = p.getLiaisons();
+    region_e lastRegion = region_e::DEFAULT_REGION;
     unsigned int cptNumero = 0; 
 
     if (liaisons.empty()) return;
-
-    region(region_e::OUEST);
+    
     for (unsigned int i = 0; i < liaisons.size() - 1; ++i) {
         const auto& n = liaisons[i];
         const auto& nextN = liaisons[i + 1]; 
@@ -130,6 +130,14 @@ void Affichage::plateau(const Plateau &p){
 
         //On sauvegarde une fois pour pas appeler plusieurs fois
         const auto villesTab = n.getVilles();
+        region_e regionActuelle = villesTab[0]->getRegion();
+
+        //Si la region change
+        if (regionActuelle!=lastRegion)
+        {
+            region(regionActuelle);
+            lastRegion = regionActuelle;
+        }
 
         //Affiche le Numéro de sélection
         cout << "[" << setfill('0') << setw(2) << right << cptNumero << "] " << setfill(' ');
@@ -155,6 +163,7 @@ void Affichage::plateau(const Plateau &p){
             if (i >= liaisons.size() - 1) break; // empèche de dépasser la taille maxium de liaisons
         }  
         cout << endl; // retour à la ligne
+        
     }
 }
 
@@ -168,32 +177,20 @@ void Affichage::partieInitialise(unsigned int nbJ){
 }
 
 
-void Affichage::choixTourJoueur(const Joueur &j){
+void Affichage::choixJoueur(const Joueur& j, const string& txtQuestion, const vector<std::string>& txtChoix){
     const couleur_e c = j.getCouleur();
-    cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
-         << couleurTerminal_n::RESET  << " " << "Choissisez une action : " << endl
-         << "1. Piocher 2 cartes" << endl
-         << "2. Acquérir une liaisons" << endl
-         << "3. Passer son tour et deffauser 2 ticker" << endl;
-    
+
+    cout << "Joueur "
+         << toCouleurTerminal_n(c) << toString(c)
+         << couleurTerminal_n::RESET << " "
+         << txtQuestion << endl;
+
+    for (size_t i = 0; i < txtChoix.size(); ++i) {
+        cout << i + 1 << ". " << txtChoix[i] << endl;
+    }
 }
 
 
-
-void Affichage::choixLiaison(const Joueur &j){
-    const couleur_e c = j.getCouleur();
-    cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
-         << couleurTerminal_n::RESET  << " " << "choissisez une Liaison à aquérire. " << endl;
-}
-
-
-void Affichage::choixLiaisonDouble(const Joueur &j){
-    const couleur_e c = j.getCouleur();
-    cout << "Joueur" << " " << toCouleurTerminal_n(c) << toString(c) 
-         << couleurTerminal_n::RESET  << " " << "choissisez une liaison : " << endl
-         << "1. L1" << endl
-         << "2. L2" << endl;
-}
 
 
 // void Affichage::mainJoueur(Joueur j){

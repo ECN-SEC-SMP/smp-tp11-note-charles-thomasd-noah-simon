@@ -61,22 +61,31 @@ void Partie::poserWagon(Joueur* j) {
 
     //Affichage du plateau de jeux
     display.plateau(plat_);
-    display.choixLiaison(*j);
+    display.choixJoueur(*j, "choissisez une liaison :", {});
     unsigned int choix = in.entier(1, indexMap.size()) - 1;
     unsigned int indexReel = indexMap[choix];
 
     // Liaison double ?
     if (indexReel + 1 < liaisons.size() && liaisons[indexReel] == liaisons[indexReel + 1]) {
-        display.choixLiaisonDouble(*j);
+        display.choixJoueur(*j, "choissisez une liaison :", {
+            "LA",
+            "LB"
+        });
+        //choix liaison double A ou B
         unsigned int voie = in.entier(1,2);
-        if (!plat_.putWagon(&liaisons[indexReel + (voie - 1)], *j))
+
+        if (plat_.putWagon(&liaisons[indexReel + (voie - 1)], *j))
         {
-           //empêcher le joueur de poser le wagon 
+           j->utiliserWagon(liaisons[indexReel + (voie - 1)].getNbRails());
+        } else {
+            //dit au joueur qu'il ne peux pas poser le wagon 
         }
     } else {
-        if (!plat_.putWagon(&liaisons[indexReel], *j))
+        if (plat_.putWagon(&liaisons[indexReel], *j))
         {
-            
+            j->utiliserWagon(liaisons[indexReel].getNbRails());
+        } else{
+            //dit au joueur qu'il ne peux pas poser le wagon 
         }
     }
 }
@@ -84,7 +93,11 @@ void Partie::poserWagon(Joueur* j) {
 
 void Partie::tourJoueur(Joueur *j){
     if (j == nullptr) return;
-    display.choixTourJoueur(*j);
+        display.choixJoueur(*j, "Choisissez une action :", {
+                "Piocher 2 cartes",
+                "Acquérir une liaison",
+                "Passer son tour et défausser 2 tickets"
+        });
         switch (in.entier(1,3))
         {
             case 1 :
@@ -154,11 +167,13 @@ void Partie::initialiser(){
 }
 
 void Partie::lancer(){
-    for(auto &j : joueurs_){
+    bool PartieIsTermine = 0;
+    while (!PartieIsTermine)
+    {
+        for(auto &j : joueurs_){
         tourJoueur(j);
     } 
+    }
 }
-
-
 
 

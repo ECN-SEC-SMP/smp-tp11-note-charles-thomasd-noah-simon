@@ -83,9 +83,8 @@ private:
 
 
     void partieInitialise(unsigned int nbJ);
-    void choixTourJoueur(const Joueur &j);
-    void choixLiaisonDouble(const Joueur &j);
-    void choixLiaison(const Joueur &j);
+    void choixJoueur(const Joueur& j, const string& txtQuestion, const vector<std::string>& txtChoix);
+
 
 
 
